@@ -7,12 +7,14 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.svg", "favicon.ico", "robots.txt"],
+      includeAssets: ["favicon.ico", "robots.txt", "apple-touch-icon.png"],
       manifest: {
-        name: "Генератор штрихкодов",
-        short_name: "Barcode",
-        description: "Приложение для генерации штрихкодов",
-        theme_color: "#ffffff",
+        name: "Сигареты и штрихкоды",
+        short_name: "BarcodeApp",
+        start_url: ".",
+        display: "standalone",
+        background_color: "#ffffff",
+        theme_color: "#000000",
         icons: [
           {
             src: "pwa-192x192.png",
@@ -25,6 +27,9 @@ export default defineConfig({
             type: "image/png",
           },
         ],
+      },
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,json}"], // 🔑 кешируем всё
       },
     }),
   ],
