@@ -41,7 +41,7 @@ function App() {
               style={{
                 cursor: "pointer",
                 padding: "10px",
-                background: "#3c3c3c",
+                background: "#ffffff",
                 borderRadius: "5px",
                 fontWeight: "bold",
               }}
