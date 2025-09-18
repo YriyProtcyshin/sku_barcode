@@ -14,7 +14,7 @@ export default defineConfig({
         short_name: "Barcode",
         start_url: "/",
         display: "standalone",
-        background_color: "#ffffff",
+        background_color: "#989393",
         theme_color: "#000000",
         icons: [
           { src: "pwa-192x192.png", sizes: "192x192", type: "image/png" },
