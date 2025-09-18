@@ -29,7 +29,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,json}"], // 🔑 кешируем всё
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,json}"], // 🔑 кешируем всё опятьы
       },
     }),
   ],
