@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1>Генератор штрихкодов</h1>
+      <h1>Генератор штрихкоду</h1>
 
       {/* аккордеон по брендам */}
       <div style={{ textAlign: "left", maxWidth: "400px", margin: "0 auto" }}>
@@ -42,6 +42,7 @@ function App() {
                 cursor: "pointer",
                 padding: "10px",
                 background: "#ffffff",
+                border: "1px solid #eeeeee",
                 borderRadius: "5px",
                 fontWeight: "bold",
               }}
