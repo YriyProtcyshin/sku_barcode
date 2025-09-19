@@ -76,6 +76,7 @@ function App() {
           </div>
         ))}
       </div>
+      <p style={{fontSize: "10px"}}>Версія 2.1</p>
     </div>
   );
 }
