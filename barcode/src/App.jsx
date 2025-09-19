@@ -45,6 +45,7 @@ function App() {
                 border: "1px solid #eeeeee",
                 borderRadius: "5px",
                 fontWeight: "bold",
+                fontSize: "20px"
               }}
             >
               {brand} {openBrands.includes(brand) ? "▲" : "▼"}
@@ -53,7 +54,7 @@ function App() {
             {openBrands.includes(brand) && (
               <div style={{ padding: "10px 20px" }}>
                 {Object.keys(skuList[brand]).map((name) => (
-                  <div key={name} style={{ margin: "5px 0" }}>
+                  <div key={name} style={{ margin: "5px 0", fontSize:"18px" }}>
                     <label>
                       <input
                         type="checkbox"
@@ -76,7 +77,7 @@ function App() {
           </div>
         ))}
       </div>
-      <p style={{fontSize: "10px"}}>Версія 2.1</p>
+      <p style={{fontSize: "10px"}}>Версія 2.1.2</p>
     </div>
   );
 }
