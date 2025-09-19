@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1>Генератор штрихкоду</h1>
+      <h1>Генератор штрихкодів</h1>
 
       {/* аккордеон по брендам */}
       <div style={{ textAlign: "left", maxWidth: "400px", margin: "0 auto" }}>
@@ -45,16 +45,21 @@ function App() {
                 border: "1px solid #eeeeee",
                 borderRadius: "5px",
                 fontWeight: "bold",
-                fontSize: "20px"
+                fontSize: "20px",
+                boxShadow: "-2px 2px 5px 1px #eeeeee",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between", // название слева, стрелка справа
               }}
             >
-              {brand} {openBrands.includes(brand) ? "▲" : "▼"}
+              <span>{brand}</span>
+              <span>{openBrands.includes(brand) ? "▲" : "▼"}</span>
             </div>
 
             {openBrands.includes(brand) && (
               <div style={{ padding: "10px 20px" }}>
                 {Object.keys(skuList[brand]).map((name) => (
-                  <div key={name} style={{ margin: "5px 0", fontSize:"18px" }}>
+                  <div key={name} style={{ margin: "5px 0", fontSize: "18px" }}>
                     <label>
                       <input
                         type="checkbox"
@@ -77,7 +82,8 @@ function App() {
           </div>
         ))}
       </div>
-      <p style={{fontSize: "10px"}}>Версія 2.1.2</p>
+      <p style={{ fontSize: "10px" }}>Версія 3.1</p>
+      <p style={{ fontSize: "10px" }}>Для оновлення даних треба закрити та заново відкрити застосунок!</p>
     </div>
   );
 }
