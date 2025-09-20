@@ -58,7 +58,7 @@ function App() {
         alt="Логотип"
         style={{ width: "120px", marginBottom: "-20px" }}
       />
-      <h1 style={{ marginTop: "0", marginBottom:"30px"}}>
+      <h1 style={{ marginTop: "0", marginBottom: "30px" }}>
         Генератор штрихкодів
       </h1>
 
@@ -93,9 +93,10 @@ function App() {
             padding: "8px 12px",
             borderRadius: 6,
             border: "none",
-            background: "#1b23e3",
+            background: "#0048f0",
             cursor: "pointer",
             fontSize: 14,
+            color: "#ffffff",
           }}
         >
           Очистити
@@ -213,7 +214,7 @@ function App() {
         </div>
       )}
 
-      <p style={{ fontSize: "10px", marginTop: 18 }}>Версія 3.3</p>
+      <p style={{ fontSize: "10px", marginTop: 18 }}>Версія 3.4</p>
       <p style={{ fontSize: "10px" }}>
         Для оновлення даних треба закрити та заново відкрити застосунок!
       </p>
