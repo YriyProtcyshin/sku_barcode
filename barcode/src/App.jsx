@@ -214,7 +214,7 @@ function App() {
         </div>
       )}
 
-      <p style={{ fontSize: "10px", marginTop: 18 }}>Версія 3.4</p>
+      <p style={{ fontSize: "10px", marginTop: 18 }}>Версія 3.4.1</p>
       <p style={{ fontSize: "10px" }}>
         Для оновлення даних треба закрити та заново відкрити застосунок!
       </p>
