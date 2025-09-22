@@ -43,7 +43,7 @@
     "Lucky Strike Black Series Green": "4820286860558",
     "Lucky Strike Black Series Purple": "4820192687324"
   },
-  "Lucky Strike Sticks":{
+  "Lucky Strike Sticks": {
     "Lucky Strike Sticks Purple Switch": "4820270364017",
     "Lucky Strike Sticks Green Switch": "4820270363935",
     "Lucky Strike Sticks Rich Tobacco": "4820270363836",
@@ -76,7 +76,7 @@
     "Rothmans Superslims Rose": "4820286860381",
     "Rothmans Superslims Green": "4820286860473"
   },
-  "Rothmans Royals":{
+  "Rothmans Royals": {
     "Rothmans Royals Red": "4820192686969",
     "Rothmans Royals Blue": "4820192681841",
     "Rothmans Royals Red 25": "4820192687263",
@@ -93,7 +93,7 @@
     "Прилуки Класичні 8": "4820001988093",
     "Прилуки Класичні 10": "4820192686907",
     "Прилуки Класичні 10 ( 25 )": "4820192686938"
-    },
+  },
   "GLO": {
     "HYPER X3 PRO BLACK": "4820270361719",
     "HYPER X3 PRO BLACK RED": "4820270361733",
@@ -116,9 +116,9 @@
     "Neo Demi Green Boost": "4820270360026",
     "Neo Demi Terracotta Tobacco": "4820215622219",
     "Neo Demi Royale Boost": "4820270364291",
-    "Neo Demi Scarlet Boost": "4820270364369"    
+    "Neo Demi Scarlet Boost": "4820270364369"
   },
-  "Neo Sticks":{
+  "Neo Sticks": {
     "Neo Sticks Boost Royale": "4820215621007",
     "Neo Sticks Boost Scarlet": "4820215621014",
     "Neo Sticks Smooth Tobacco": "4820215626743"
@@ -151,5 +151,36 @@
     "VELO Orange Spark Екстра-Інтенсивний": "4820270365038",
     "VELO Peppermint Storm Екстра-Інтенсивний": "4820270365090",
     "VELO Sweet Papaya Класичний": "4820270364864"
-  }
+  },
+  "Kent OLD": {
+    "Kent Lumina":"4820192687676",
+    "Kent Lumina nano":"4820192687737",
+    "Kent Feel Sensio": "4820192686877",
+    "Kent Sticks Beryl Green": "4820215627702",
+    "Kent Sticks Bright Tobacco": "4820215627610",
+    "Kent Sticks Coral Red": "4820270360491",
+    "Kent Sticks Golden Yellow": "4820270360521",
+    "Kent Sticks Royal Purple": "4820215627580"
+  },
+  "Rothmans OLD": {
+    "Rothmans Demi Click Coral": "4820192683654",
+    "Rothmans Demi Double Click": "4820192684514",
+    "Rothmans Demi Mix": "48210287"
+  },
+  "NEO OLD": {
+    "NEO DEMI BRONZE TOBACCO": "4820215629959",
+    "NEO DEMI GOLDEN TOBACCO": "4820270361634",
+    "Neo Demi Pearl Tobacco": "4820215629980",
+    "NEO STICKS BOOST TROPIC": "4820215629485",
+    "NEO STICKS BOOST AQUA": "4820215629515",
+    "Neo Sticks Rich Tobacco": "4820215620963",
+    "Neo Sticks Smooth Tobacco": "4820215626743"
+  },
+  "VELO OLD": {
+    "VELO Frosty Lemon Класичний": "4820270363027",
+    "VELO Blushy Berry Intensive":"4820270363058",
+    "VELO ICY Berryes Classic":"2404919000"
+    }
 }
+
+
