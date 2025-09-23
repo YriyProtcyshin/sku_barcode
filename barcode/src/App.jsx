@@ -8,27 +8,23 @@ function App() {
   const [openBrands, setOpenBrands] = useState([]);
   const [filter, setFilter] = useState("");
   const [showInstruction, setShowInstruction] = useState(false);
-  const [isStandalone, setIsStandalone] = useState(false);
+  const [activeSection, setActiveSection] = useState(null); // для инструкции PWA
 
   useEffect(() => {
     fetch("/sku.json")
       .then((res) => res.json())
       .then((data) => setSkuList(data))
       .catch((err) => console.error("Ошибка загрузки sku.json", err));
-
-    // Проверка режима: standalone (установленное PWA) или браузер
-    const checkStandalone =
-      window.matchMedia("(display-mode: standalone)").matches ||
-      window.navigator.standalone === true; // для iOS
-    setIsStandalone(checkStandalone);
   }, []);
 
   const makeKey = (brand, name) => `${brand}:::${name}`;
+
   const toggleBrand = (brand) => {
     setOpenBrands((prev) =>
       prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
     );
   };
+
   const handleCheckbox = (brand, name) => {
     const key = makeKey(brand, name);
     setSelectedKeys((prev) =>
@@ -42,6 +38,7 @@ function App() {
 
   const filterLower = filter.trim().toLowerCase();
   const isFiltering = filterLower.length > 0;
+
   const filteredFlat = isFiltering
     ? flattened.filter(
         (it) =>
@@ -49,6 +46,45 @@ function App() {
           it.brand.toLowerCase().includes(filterLower)
       )
     : [];
+
+  // Определяем, видим ли мы браузер (для показа кнопки инструкции)
+  const isBrowser =
+    typeof window !== "undefined" &&
+    !window.matchMedia("(display-mode: standalone)").matches;
+
+  // Массив платформ для инструкции
+  const platforms = [
+    {
+      id: "iphone",
+      title: "📱 iPhone (Safari)",
+      steps: [
+        { text: "Відкрийте сайт у Safari." },
+        { text: "Натисніть Поділитися (іконка ↑).", img: "/1_1.jpeg" },
+        { text: "Обиріть Додати на головний екран.", img: "/1_1.jpeg" },
+      ],
+    },
+    {
+      id: "📱 iPhone (Chrome)",
+      title: "📱 iPhone (Chrome)",
+      steps: [
+        { text: "Відкрийте сайт на iPhone у Chrome." },
+        { text: "Натисніть Поділитися.", img: "/2_1.jpeg" },
+        { text: "Обиріть Додати на головний екран.", img: "/2_2.jpeg" },
+      ],
+    },
+    {
+      id: "android",
+      title: "🤖 Android (Chrome)",
+      steps: [
+        { text: "Відкрийте сайт у Chrome."  },
+        { text: "Натисніть Меню (три крапки ⋮).", img: "/3_1.jpg"  },
+        {
+          text: "Обиріть Додати на головний екран.",
+          img: "/3_2.jpg",
+        },
+      ],
+    },
+  ];
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
@@ -102,13 +138,16 @@ function App() {
         </button>
       </div>
 
-      {/* Списки */}
+      {/* Список сигарет */}
       {isFiltering ? (
         <div style={{ textAlign: "left", maxWidth: "640px", margin: "0 auto" }}>
-          <h3>Результати пошуку ({filteredFlat.length})</h3>
+          <h3 style={{ marginBottom: 8 }}>
+            Результати пошуку ({filteredFlat.length})
+          </h3>
           {filteredFlat.length === 0 && (
             <p style={{ color: "#777" }}>Нічого не знайдено</p>
           )}
+
           {filteredFlat.map(({ brand, name, code }) => {
             const key = makeKey(brand, name);
             return (
@@ -138,6 +177,7 @@ function App() {
                     <div style={{ fontWeight: 600 }}>{name}</div>
                   </div>
                 </label>
+
                 {selectedKeys.includes(key) && (
                   <div style={{ marginTop: 10 }}>
                     <Barcode value={code} />
@@ -169,6 +209,7 @@ function App() {
                 <span>{brand}</span>
                 <span>{openBrands.includes(brand) ? "▲" : "▼"}</span>
               </div>
+
               {openBrands.includes(brand) && (
                 <div style={{ padding: "10px 20px" }}>
                   {Object.keys(skuList[brand]).map((name) => {
@@ -189,6 +230,7 @@ function App() {
                           />
                           {name}
                         </label>
+
                         {selectedKeys.includes(key) && (
                           <div style={{ marginTop: 8 }}>
                             <Barcode value={skuList[brand][name]} />
@@ -204,27 +246,25 @@ function App() {
         </div>
       )}
 
-      {/* Кнопка с инструкцией (только в браузере) */}
-      {!isStandalone && (
+      {/* Кнопка инструкции (видна только в браузере) */}
+      {isBrowser && (
         <button
           onClick={() => setShowInstruction(true)}
           style={{
-            marginTop: 20,
-            padding: "10px 14px",
+            marginTop: 16,
+            padding: "8px 12px",
             borderRadius: 6,
             border: "none",
-            background: "#ff9800",
+            background: "#00aaff",
+            color: "#fff",
             cursor: "pointer",
-            fontSize: 14,
-            color: "#ffffff",
-            fontWeight: 600,
           }}
         >
-          Інструкція з встановлення
+          Як встановити застосунок
         </button>
       )}
 
-      {/* Модалка с аккордеоном и картинками */}
+      {/* Модальное окно инструкции */}
       {showInstruction && (
         <div
           style={{
@@ -232,116 +272,84 @@ function App() {
             inset: 0,
             background: "rgba(0,0,0,0.6)",
             display: "flex",
-            alignItems: "center",
+            alignItems: "flex-start", // меняем центрирование на начало
             justifyContent: "center",
             zIndex: 9999,
+            overflowY: "auto", // скролл по вертикали
+            padding: "20px",
           }}
         >
           <div
             style={{
               background: "#fff",
               borderRadius: 8,
-              padding: 20,
               maxWidth: "420px",
+              width: "100%",
               textAlign: "left",
+              padding: "20px",
+              boxSizing: "border-box",
+              marginTop: "20px", // небольшой отступ сверху
+              marginBottom: "20px", // отступ снизу, чтобы скролл работал
             }}
           >
             <h3 style={{ marginTop: 0 }}>Як встановити застосунок</h3>
 
-            {/* iPhone */}
-            <details style={{ marginBottom: 12 }}>
-              <summary
-                style={{ cursor: "pointer", fontSize: 16, fontWeight: 600 }}
-              >
-                iPhone (Safari)
-              </summary>
-              <ol>
-                <li>
-                  Натисніть <b>Поділитися</b> (іконка ↑). <br />
-                  <img
-                    src="/1_1.jpeg"
-                    alt="Share"
-                    style={{ width: "30%", marginTop: 6 }}
-                  />
-                </li>
-                <li>
-                  Обиріть <b>Додати на головний екран</b>. <br />
-                  <img
-                    src="/1_2.jpeg"
-                    alt="Add to Home"
-                    style={{ width: "30%", marginTop: 6 }}
-                  />
-                </li>
-              </ol>
-            </details>
-
-            {/* iPhone Chrome */}
-            <details style={{ marginBottom: 12 }}>
-              <summary
-                style={{ cursor: "pointer", fontSize: 16, fontWeight: 600 }}
-              >
-                iPhone (Chrome)
-              </summary>
-              <ol>
-                <li>
-                  Натисніть <b>Поділитися</b> (іконка ↑). <br />
-                  <img
-                    src="/2_1.jpeg"
-                    alt="Share"
-                    style={{ width: "30%", marginTop: 6 }}
-                  />
-                </li>
-                <li>
-                  Обиріть <b>Додати на головний екран</b>. <br />
-                  <img
-                    src="/2_2.jpeg"
-                    alt="Add to Home"
-                    style={{ width: "30%", marginTop: 6 }}
-                  />
-                </li>
-              </ol>
-            </details>
-
-            {/* Android */}
-            <details>
-              <summary
-                style={{ cursor: "pointer", fontSize: 16, fontWeight: 600 }}
-              >
-                🤖 Android (Chrome)
-              </summary>
-              <ol>
-                <li>
-                  Відкрийте сайт у Chrome. <br />
-                </li>
-                <li>
-                  Натисніть <b>Меню</b> (три крапки ⋮). <br />
-                  <img
-                    src="/3_1.jpg"
-                    alt="Chrome"
-                    style={{ width: "35%", marginTop: 6 }}
-                  />
-                </li>
-                <li>
-                  Обиріть <b>Додати на головний екран</b>. <br />
-                  <img
-                    src="/3_2.jpg"
-                    alt="Menu"
-                    style={{ width: "35%", marginTop: 6 }}
-                  />
-                </li>
-              </ol>
-            </details>
+            {platforms.map(({ id, title, steps }) => {
+              const isActive = activeSection === id;
+              return (
+                <div key={id} style={{ marginBottom: 12 }}>
+                  <div
+                    onClick={() => setActiveSection(isActive ? null : id)}
+                    style={{
+                      cursor: "pointer",
+                      fontSize: 16,
+                      fontWeight: 600,
+                      background: "#f0f0f0",
+                      padding: "8px 10px",
+                      borderRadius: 6,
+                    }}
+                  >
+                    {title}
+                  </div>
+                  {isActive && (
+                    <ol style={{ padding: "10px 15px" }}>
+                      {steps.map((s, i) => (
+                        <li key={i} style={{ marginBottom: 12 }}>
+                          {s.text}
+                          <br />
+                          {s.img && (
+                            <>
+                              <br />
+                              <img
+                                src={s.img}
+                                alt={s.text}
+                                style={{
+                                  width: "200px",
+                                  height: "auto",
+                                  marginTop: 6,
+                                }}
+                              />
+                            </>
+                          )}
+                        </li>
+                      ))}
+                    </ol>
+                  )}
+                </div>
+              );
+            })}
 
             <button
               onClick={() => setShowInstruction(false)}
               style={{
-                marginTop: 16,
+                marginTop: 12,
                 padding: "8px 12px",
                 borderRadius: 6,
                 border: "none",
-                background: "#0048f0",
+                background: "#ff4444",
                 color: "#fff",
                 cursor: "pointer",
+                display: "block",
               }}
             >
               Закрити
@@ -350,7 +358,7 @@ function App() {
         </div>
       )}
 
-      <p style={{ fontSize: "10px", marginTop: 18 }}>Версія 3.5.1</p>
+      <p style={{ fontSize: "10px", marginTop: 18 }}>Версія 3.5</p>
       <p style={{ fontSize: "10px" }}>
         Для оновлення даних треба закрити та заново відкрити застосунок!
       </p>
