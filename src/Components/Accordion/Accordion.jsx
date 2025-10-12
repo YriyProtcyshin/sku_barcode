@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Barcode from "../Barcode/Barcode";
-import "./Accordion.css"; //change
+import "./Accordion.css"
 
 function Accordion({
   data,
