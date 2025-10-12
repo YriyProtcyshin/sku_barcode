@@ -221,20 +221,25 @@ font-size: 18px;
 
 .footer {
     position: fixed;
-    display: flex;
-    flex-wrap: wrap;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        /* Центрирует по горизонтали */
     
-    /* всегда внизу экрана */
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    inset: auto 0 0 0;
-    background-color: #fff;
-    border-top: 1px solid #ccc;
-    padding: 10px 0 15px;
-    text-align: center;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
+        width: 100%;
+        max-width: 600px;
+        /* Чтобы не растягивался на весь экран */
+    
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    
+        background-color: #fff;
+        border-top: 1px solid #ccc;
+        padding: 10px 0 20px;
+        /* Учет челки/дом. полосы */
+        text-align: center;
+        box-shadow:  -1px -1px 5px 0px rgba(0, 0, 0, 0.1);;
+        z-index: 1000;
 }
