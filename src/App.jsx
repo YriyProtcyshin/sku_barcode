@@ -232,7 +232,7 @@ function App() {
         </div>
       )}
 
-      {/* ✅ Контейнер для уведомлений  ToastContainer*/}
+      {/* ✅ Контейнер для уведомлений*/}
       <ToastContainer position="top-center" />
     </div>
   );
