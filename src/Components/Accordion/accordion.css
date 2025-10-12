@@ -1,0 +1,136 @@
+.accordion {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.accordion-item {
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    background-color: #f0f0f0;
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.brand-name {
+    text-align: left;
+    font-size: 20px;
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+    font-size: 14px;
+}
+
+.arrow.up {
+    transform: rotate(180deg);
+}
+
+.accordion-body {
+    padding: 10px 15px;
+    background-color: #fff;
+    text-align: left;
+}
+
+.accordion-model {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+
+.accordion-model:last-child {
+    border-bottom: none;
+}
+
+.barcode-wrapper {
+    margin-top: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    /* показываем, что на штрихкод можно кликнуть */
+}
+
+/* Модальное окно */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    /* почти полностью затемнённый фон */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* выравниваем окно сверху */
+    padding-top: 50px;
+    /* отступ сверху, окно немного ниже верха */
+    z-index: 1000;
+    overflow-y: auto;
+    /* на маленьких экранах можно скроллить */
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 79%;
+    text-align: center;
+    position: relative;
+    animation: slideDown 0.3s ease forwards;
+    /* плавное появление сверху */
+}
+
+/* Крестик */
+.modal-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.brand-counter {
+    margin-left: 8px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-header.active{
+    background-color: #c2fab4;
+}
+/* контейнер справа (счётчик + стрелка) */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    to {
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+}

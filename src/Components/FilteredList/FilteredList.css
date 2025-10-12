@@ -1,0 +1,125 @@
+.filtered-list {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.brand-section {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    background-color: #fafafa;
+    padding: 10px 15px;
+}
+
+.brand-section h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+}
+
+/* Каждая модель */
+.model-item {
+    display: flex;
+    flex-direction: column;
+    /* Колонки: сначала название, потом штрихкод */
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+.model-item input{
+    margin-right: 10px;
+}
+
+.model-item:last-child {
+    border-bottom: none;
+}
+
+/* Контейнер для модели и штрихкода */
+.model-info {
+    display: flex;
+    flex-direction: column;
+    /* Штрихкод под названием */
+    gap: 5px;
+}
+
+/* Чекбокс и название */
+.model-info label {
+    cursor: pointer;
+    font-size: 15px;
+    text-align: left;
+}
+
+/* Штрихкод */
+.barcode-wrapper {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.barcode-wrapper:hover {
+    transform: scale(1.05);
+}
+
+/* Модальное окно */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 50px;
+    z-index: 1000;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 79%;
+    text-align: center;
+    position: relative;
+    animation: slideDown 0.3s ease forwards;
+}
+
+.modal-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    to {
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
