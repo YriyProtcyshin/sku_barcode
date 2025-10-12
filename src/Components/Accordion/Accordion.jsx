@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Barcode from "../Barcode/Barcode";
-import "./Accordion.css";
+import "./Accordion.css"; //change
 
 function Accordion({
   data,
@@ -40,7 +40,9 @@ function Accordion({
         return (
           <div key={brand} className="accordion-item">
             <div
-              className={`accordion-header ${selectedCount >0?"active":""}`}
+              className={`accordion-header ${
+                selectedCount > 0 ? "active" : ""
+              }`}
               onClick={() => toggleBrand(brand)}
             >
               <span className="brand-name">{brand}</span>
