@@ -8,21 +8,27 @@ import "./App.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// импортирую хук загрузки данных с проверкой версии
+import { useSkuData } from "./hooks/useSkuData"; // импортируем хук
+
 function App() {
-  const [skuList, setSkuList] = useState({});
+  // const [skuList, setSkuList] = useState({});
+  const { skuList, loadingStatus, lastModified } = useSkuData();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedItems, setSelectedItems] = useState({});
   const [modalData, setModalData] = useState(null);
   const [hideBarcodes, setHideBarcodes] = useState(false);
   const [showSelectedList, setShowSelectedList] = useState(false);
 
+  console.log("loadingStatus:", loadingStatus);
+
   // 🔹 Загрузка JSON
-  useEffect(() => {
-    fetch("/sku.json")
-      .then((res) => res.json())
-      .then((data) => setSkuList(data))
-      .catch((err) => console.error("Ошибка загрузки sku.json:", err));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/sku.json")
+  //     .then((res) => res.json())
+  //     .then((data) => setSkuList(data))
+  //     .catch((err) => console.error("Ошибка загрузки sku.json:", err));
+  // }, []);
 
   // 🔹 Переключение выбранных позиций
   const toggleItem = (brand, model, barcode) => {
@@ -186,7 +192,6 @@ function App() {
               Очистити
             </button>
           </div>
-
           {/* Основной список */}
           {filteredData ? (
             <FilteredList
@@ -205,6 +210,7 @@ function App() {
               hideBarcodes={hideBarcodes}
             />
           )}
+          <div className="last-modified">Дата оновлення файла з SKU: <br/> {lastModified}</div>
           <div className="footer">
             <button
               className="show-selected-btn"

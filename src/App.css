@@ -243,3 +243,10 @@ font-size: 18px;
         box-shadow:  -1px -1px 5px 0px rgba(0, 0, 0, 0.1);;
         z-index: 1000;
 }
+
+
+.last-modified{
+    font-size: 10px;
+        padding-top: 20px;
+        color: #bdbdbd;
+    }
