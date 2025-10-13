@@ -20,7 +20,7 @@ export function useSkuData() {
       try {
         setLoadingStatus("Проверка обновлений...");
 
-        // Сначала HEAD-запрос для проверки изменений
+        // HEAD-запрос для проверки изменений
         const headRes = await fetch("/sku.json", { method: "HEAD" });
         const etag = headRes.headers.get("etag");
         const modified = headRes.headers.get("last-modified");
@@ -34,7 +34,6 @@ export function useSkuData() {
           ? new Date(prevModified).getTime()
           : 0;
 
-        // Если ETag или Last-Modified изменились, либо данных нет — загрузка с сети
         if (
           etag !== prevEtag ||
           modifiedTimestamp !== prevModifiedTimestamp ||
@@ -42,21 +41,19 @@ export function useSkuData() {
         ) {
           setLoadingStatus("🔄 Обновление данных...");
 
-          // Fetch с реальной сети, PWA кэш настроен как NetworkFirst
-          const jsonRes = await fetch("/sku.json", { cache: "no-store" });
+          // fetch с bypass кеша браузера и сервис-воркера
+          const jsonRes = await fetch("/sku.json", { cache: "reload" });
           const data = await jsonRes.json();
 
           setSkuList(data);
           setLastModified(modified);
 
-          // Сохраняем в localStorage
           localStorage.setItem("sku_data", JSON.stringify(data));
           localStorage.setItem("sku_etag", etag);
           localStorage.setItem("sku_lastModified", modified);
 
           setLoadingStatus("✅ Данные актуальны");
         } else {
-          // Используем локальные данные
           setSkuList(JSON.parse(savedData));
           setLastModified(prevModified);
           setLoadingStatus("✅ Данные актуальны (из localStorage)");
@@ -64,7 +61,6 @@ export function useSkuData() {
       } catch (err) {
         console.error("Ошибка загрузки sku.json:", err);
 
-        // Если сеть недоступна, используем localStorage
         const savedData = localStorage.getItem("sku_data");
         const savedModified = localStorage.getItem("sku_lastModified") || "";
         if (savedData) {
