@@ -29,8 +29,18 @@ export function useSkuData() {
         const prevModified = localStorage.getItem("sku_lastModified");
         const savedData = localStorage.getItem("sku_data");
 
-        // Проверяем, изменился ли файл
-        if (etag !== prevEtag || modified !== prevModified || !savedData) {
+        // преобразуем даты в timestamp для корректного сравнения
+        const modifiedTimestamp = modified ? new Date(modified).getTime() : 0;
+        const prevModifiedTimestamp = prevModified
+          ? new Date(prevModified).getTime()
+          : 0;
+
+        // если ETag или Last-Modified изменились, либо нет данных — обновляем
+        if (
+          etag !== prevEtag ||
+          modifiedTimestamp !== prevModifiedTimestamp ||
+          !savedData
+        ) {
           setLoadingStatus("🔄 Обновление данных...");
           const jsonRes = await fetch("/sku.json");
           const data = await jsonRes.json();
@@ -38,7 +48,7 @@ export function useSkuData() {
           setSkuList(data);
           setLastModified(modified);
 
-          // Сохраняем локально
+          // сохраняем локально
           localStorage.setItem("sku_data", JSON.stringify(data));
           localStorage.setItem("sku_etag", etag);
           localStorage.setItem("sku_lastModified", modified);
