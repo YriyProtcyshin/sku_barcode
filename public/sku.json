@@ -1,13 +1,4 @@
 {
-  "Capri": {
-    "Capri Azzurro": "4820001988352",
-    "Capri Bianco": "4820001983425"
-  },
-  "Dunhill": {
-    "Dunhill Master Blend": "4820192686808",
-    "Dunhill Master Blend Gold": "4820192687386",
-    "Dunhill Master Blend Black": "4820286860527"
-  },
   "Kent": {
     "Kent Navy Blue": "4820192685399",
     "Kent Blue": "4820192683371",
@@ -25,34 +16,6 @@
     "Kent Mode S-series Blue": "4820192688147",
     "Kent Mode S-series Silver": "4820192688178"
   },
-  "Kent Sticks": {
-    "Kent Sticks Amber Mix": "4820270362556",
-    "Kent Sticks Aquamarine Mix": "4820270361689",
-    "Kent Sticks Scarlet Mix": "4820270360552",
-    "Kent Sticks Violet Mix": "4820270360460"
-  },
-  "Lucky Strike": {
-    "Lucky Strike Original": "4820192688260",
-    "Lucky Strike Blue": "4820192688291",
-    "Lucky Strike Unlimited Red": "4820192686617",
-    "Lucky Strike Unlimited Silver": "4820192686587",
-    "Lucky Strike Original (40)": "4820192688321",
-    "Lucky Strike Blue (40)": "4820192688352",
-    "Lucky Strike Compact Blue": "4820192687539",
-    "Lucky Strike Compact Silver": "4820192689823",
-    "Lucky Strike Black Series Amber": "4820192687355",
-    "Lucky Strike Black Series Green": "4820286860558",
-    "Lucky Strike Black Series Purple": "4820192687324"
-  },
-  "Lucky Strike Sticks": {
-    "Lucky Strike Sticks Purple Switch": "4820270364017",
-    "Lucky Strike Sticks Green Switch": "4820270363935",
-    "Lucky Strike Sticks Rich Tobacco": "4820270363836",
-    "Lucky Strike Sticks Gold Tobacco": "4820270363881",
-    "Lucky Strike Sticks Dark Tobacco": "4820270364475",
-    "Lucky Strike Sticks Yellow Switch": "4820270364529"
-  },
-
   "Rothmans": {
     "Rothmans Demi Blue": "48209571",
     "Rothmans Demi Silver": "48209564",
@@ -85,28 +48,44 @@
     "Rothmans Royals Demi Blue": "4820192681810",
     "Rothmans Royals Demi_Silver": "4820192685917"
   },
-  "Vogue": {
-    "Vogue Green": "4820192687294",
-    "Vogue La Cigarette Purple": "4820286860190",
-    "Vogue Lilas": "48209304"
-  },
   "Прилуки": {
     "Прилуки Класичні 8": "4820001988093",
     "Прилуки Класичні 10": "4820192686907",
     "Прилуки Класичні 10 ( 25 )": "4820192686938"
   },
-  "GLO": {
-    "HYPER X3 PRO BLACK": "4820270361719",
-    "HYPER X3 PRO BLACK RED": "4820270361733",
-    "HYPER X3 PRO BLUE": "4820270361801",
-    "HYPER X3 PRO ROSE": "4820270361825",
-    "Hyper X3 Pro Bronze": "4820270361849",
-    "Hyper X3 Pro Purple": "4820270361757",
-    "Hyper X3 Pro Teal": "4820270361788",
-    "Hyper Black": "4820270362273",
-    "Hyper Green": "4820270362778",
-    "Hyper Red": "4820270362211",
-    "Hyper Rose Gold": "4820270362198"
+  "Lucky Strike": {
+    "Lucky Strike Original": "4820192688260",
+    "Lucky Strike Blue": "4820192688291",
+    "Lucky Strike Unlimited Red": "4820192686617",
+    "Lucky Strike Unlimited Silver": "4820192686587",
+    "Lucky Strike Original (40)": "4820192688321",
+    "Lucky Strike Blue (40)": "4820192688352",
+    "Lucky Strike Compact Blue": "4820192687539",
+    "Lucky Strike Compact Silver": "4820192689823",
+    "Lucky Strike Black Series Amber": "4820192687355",
+    "Lucky Strike Black Series Green": "4820286860558",
+    "Lucky Strike Black Series Purple": "4820192687324"
+  },
+  "Capri": {
+    "Capri Azzurro": "4820001988352",
+    "Capri Bianco": "4820001983425"
+  },
+  "Dunhill": {
+    "Dunhill Master Blend": "4820192686808",
+    "Dunhill Master Blend Gold": "4820192687386",
+    "Dunhill Master Blend Black": "4820286860527"
+  },
+
+  "Vogue": {
+    "Vogue Green": "4820192687294",
+    "Vogue La Cigarette Purple": "4820286860190",
+    "Vogue Lilas": "48209304"
+  },
+  "Kent Sticks": {
+    "Kent Sticks Amber Mix": "4820270362556",
+    "Kent Sticks Aquamarine Mix": "4820270361689",
+    "Kent Sticks Scarlet Mix": "4820270360552",
+    "Kent Sticks Violet Mix": "4820270360460"
   },
   "Neo": {
     "Neo Demi Purple Boost": "4820215629430",
@@ -123,6 +102,14 @@
     "Neo Sticks Boost Royale": "4820215621007",
     "Neo Sticks Boost Scarlet": "4820215621014",
     "Neo Sticks Smooth Tobacco": "4820215626743"
+  },
+  "Lucky Strike Sticks": {
+    "Lucky Strike Sticks Purple Switch": "4820270364017",
+    "Lucky Strike Sticks Green Switch": "4820270363935",
+    "Lucky Strike Sticks Rich Tobacco": "4820270363836",
+    "Lucky Strike Sticks Gold Tobacco": "4820270363881",
+    "Lucky Strike Sticks Dark Tobacco": "4820270364475",
+    "Lucky Strike Sticks Yellow Switch": "4820270364529"
   },
   "VELO": {
     "VELO Mighty Peppermint Екстра-Інтенсивний": "4820270363102",
@@ -153,6 +140,21 @@
     "VELO Peppermint Storm Екстра-Інтенсивний": "4820270365090",
     "VELO Sweet Papaya Класичний": "4820270364864"
   },
+
+  "GLO": {
+    "HYPER X3 PRO BLACK": "4820270361719",
+    "HYPER X3 PRO BLACK RED": "4820270361733",
+    "HYPER X3 PRO BLUE": "4820270361801",
+    "HYPER X3 PRO ROSE": "4820270361825",
+    "Hyper X3 Pro Bronze": "4820270361849",
+    "Hyper X3 Pro Purple": "4820270361757",
+    "Hyper X3 Pro Teal": "4820270361788",
+    "Hyper Black": "4820270362273",
+    "Hyper Green": "4820270362778",
+    "Hyper Red": "4820270362211",
+    "Hyper Rose Gold": "4820270362198"
+  },
+
   "Kent OLD": {
     "Kent Lumina": "4820192687676",
     "Kent Lumina nano": "4820192687737",
@@ -182,5 +184,9 @@
     "VELO Frosty Lemon Класичний": "4820270363027",
     "VELO Blushy Berry Intensive": "4820270363058",
     "VELO ICY Berryes Classic": "4820270362938"
+  },
+  "test":{
+    "test":"80000000000008"
   }
+
 }
