@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Accordion from "./Components/Accordion/Accordion";
 import FilteredList from "./Components/FilteredList/FilteredList";
 import Barcode from "./Components/Barcode/Barcode";
+import DateWeekCompact from "./Components/DateAndWeek/DateAndWeek";
 import "./App.css";
 
 // ✅ Импортируем Toastify
@@ -115,6 +116,8 @@ function App() {
       <div className="header">
         <h1>Check SKU</h1>
         <p className="description">Генератор штрих-кодів та списку SKU</p>
+        <DateWeekCompact/>
+
       </div>
       {/* Чекбокс для скрытия штрихкодов */}
       <label className="hide-barcode-toggle">
