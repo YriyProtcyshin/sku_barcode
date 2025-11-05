@@ -58,13 +58,18 @@
     "Lucky Strike Blue": "4820192688291",
     "Lucky Strike Unlimited Red": "4820192686617",
     "Lucky Strike Unlimited Silver": "4820192686587",
+    
     "Lucky Strike Original (40)": "4820192688321",
     "Lucky Strike Blue (40)": "4820192688352",
+    
     "Lucky Strike Compact Blue": "4820192687539",
     "Lucky Strike Compact Silver": "4820192689823",
     "Lucky Strike Black Series Amber": "4820192687355",
     "Lucky Strike Black Series Green": "4820286860558",
-    "Lucky Strike Black Series Purple": "4820192687324"
+    "Lucky Strike Black Series Purple": "4820192687324",
+    
+    "Lucky Strike Crafted 1871 Red":	"4820286860855",
+    "Lucky Strike Crafted 1871 Blue":	"4820286860824"
   },
   "Capri": {
     "Capri Azzurro": "4820001988352",
@@ -109,7 +114,8 @@
     "Lucky Strike Sticks Rich Tobacco": "4820270363836",
     "Lucky Strike Sticks Gold Tobacco": "4820270363881",
     "Lucky Strike Sticks Dark Tobacco": "4820270364475",
-    "Lucky Strike Sticks Yellow Switch": "4820270364529"
+    "Lucky Strike Sticks Yellow Switch": "4820270364529",
+    
   },
   "VELO": {
     "VELO Mighty Peppermint Екстра-Інтенсивний": "4820270363102",
