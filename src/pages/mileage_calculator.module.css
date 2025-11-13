@@ -1,0 +1,123 @@
+/* Блок полей ввода */
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+/* Отдельное числовое поле с кнопками */
+.number-input {
+  display: flex;
+  justify-content: space-between; /* label слева, input-field справа */
+  align-items: center;
+  width: 100%; /* важно, чтобы flex мог занять всю ширину родителя */
+  margin: 8px 0;
+}
+
+.number-input label {
+  flex-shrink: 1; /* label не сжимается */
+  margin-right: 8px;
+  white-space: wrap; /* чтобы label не переносился */
+}
+
+.input-field {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* расстояние между кнопками и input */
+}
+
+.input-field input {
+  width: 80px; /* фиксированная ширина */
+  padding: 6px 8px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  text-align: right;
+}
+
+.input-field button {
+  padding: 6px 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #0078d7;
+  background-color: #0078d7;
+  color: white;
+  cursor: pointer;
+}
+
+/* Результат расхода */
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #e6f2ff;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Формула расхода */
+.formula {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.formula h3 {
+  color: #0078d7;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.formula-fraction {
+  display: inline-block;
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.numerator {
+  border-bottom: 3px solid #0078d7;
+  padding: 5px 10px;
+  display: inline-block;
+  background-color: #e6f2ff;
+  border-radius: 6px 6px 0 0;
+}
+
+.denominator {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #f9f9f9;
+  border-radius: 0 0 6px 6px;
+  margin-top: 5px;
+  color: #555;
+}
+
+.multiply {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 22px;
+  color: #d9534f;
+}
+
+/* Описание формулы */
+.formula-description {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
