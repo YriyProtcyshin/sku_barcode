@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./Mileage_calculator.module.css";
+import styles from "./mileage_calculator.module.css";
 
 // Компонент для числового поля с кнопками + и -
 const NumberInput = ({ label, value, setValue }) => {
