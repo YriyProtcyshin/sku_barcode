@@ -279,7 +279,7 @@ body.modal-open {
 /* === Выезжающее меню (внутри контейнера) === */
 .sidebar {
   position: absolute;
-  top: env(safe-area-inset-top);
+  top: 0;
   left: -295px;
   width: 250px;
   height: calc(100% - env(safe-area-inset-top));
