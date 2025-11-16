@@ -278,8 +278,8 @@ body.modal-open {
 
 /* === Выезжающее меню (внутри контейнера) === */
 .sidebar {
-  /* position: absolute; */
-  position: fixed;
+  position: absolute;
+  /* position: fixed; */
   top: 0;
   left: -295px;
   width: 250px;
