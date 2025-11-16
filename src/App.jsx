@@ -1,14 +1,27 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+// import { useState } from "react";
 import Home from "./pages/Home";
 import Mileage_calculator from "./pages/Mileage_calculator";
 import CigaretteConverter from "./pages/CigaretteConverter";
 import RecommendedOrderCalculator from "./pages/RecommendedOrderCalculator";
+import { ImBarcode } from "react-icons/im";
+import { LuFuel} from "react-icons/lu";
+import { FaExchangeAlt } from "react-icons/fa";
+import { LuPackageCheck } from "react-icons/lu";
 import "./App.css"; // добавим стили внизу
-
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
+
+  // При открытии sidebar добавляю новый класс и отключаю скролл экрана
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("body-lock");
+    } else {
+      document.body.classList.remove("body-lock");
+    }
+  }, [isOpen]);
 
   return (
     <Router>
@@ -28,19 +41,26 @@ function App() {
           </button>
           <nav>
             <Link to="/" onClick={() => setIsOpen(false)}>
-              ⫼⫼ Check SKU
+              <ImBarcode className="icon" />
+              <span>Штрих-коди</span>
             </Link>
+
             <Link to="/Mileage_calculator" onClick={() => setIsOpen(false)}>
-              ⛽ Mileage calculator
+              <LuFuel className="icon" />
+              <span>Паливо</span>
             </Link>
+
             <Link to="/CigaretteConverter" onClick={() => setIsOpen(false)}>
-              🔃 Sticks Converter
+              <FaExchangeAlt className="icon" />
+              <span>Sticks Converter</span>
             </Link>
+
             <Link
               to="/RecommendedOrderCalculator"
               onClick={() => setIsOpen(false)}
             >
-              📦 Recommended Order Calculator
+              <LuPackageCheck className="icon" />
+              <span>Рекомендований заказ </span>
             </Link>
           </nav>
         </div>

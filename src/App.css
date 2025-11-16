@@ -278,17 +278,20 @@ body.modal-open {
 
 /* === Выезжающее меню (внутри контейнера) === */
 .sidebar {
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
   top: 0;
   left: -295px;
   width: 250px;
-  height: calc(100% - env(safe-area-inset-top));
+  height: calc(100vh - env(safe-area-inset-top));
   background-color: #1e1e1e;
   color: white;
   padding: calc(20px + env(safe-area-inset-top)) 20px 20px 20px;
   transition: left 0.3s ease;
   z-index: 10;
   border-right: 2px solid #0078d7;
+  
+  
 }
 
 .sidebar.open {
@@ -301,16 +304,37 @@ body.modal-open {
   gap: 15px;
   margin-top: 50px;
 }
+.sidebar nav a .icon {
+  display: inline-block;
+    width: 28px;
+    text-align: center;
+    font-size: 26px;
+    margin-right: 8px;
+}
 
 .sidebar nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
+  display: flex;
+    align-items: center;
+    gap: 12px;
+  
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    padding: 12px 18px;
+  
+    border-radius: 12px;
+    text-decoration: none;
+  
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(6px);
+  
+    transition: background 0.25s ease, transform 0.15s ease;
 }
 
 .sidebar nav a:hover {
   color: #00bfff;
 }
+
 
 .close-btn {
   position: absolute;
@@ -332,7 +356,7 @@ body.modal-open {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 8;
-  border-radius: 12px;
+ 
 }
 
 /* === Основное содержимое === */
@@ -340,4 +364,11 @@ body.modal-open {
   padding: 0px;
   position: relative;
   z-index: 1;
+}
+
+.body-lock {
+  overflow: hidden !important;
+  height: 100vh;
+  touch-action: none;
+  /* отключает скролл на телефонах */
 }
