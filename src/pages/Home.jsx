@@ -114,7 +114,7 @@ const Home = () => {
   return (
     <div className="container">
       <div className="header">
-        <h1>Check SKU</h1>
+        <h1>Штрих коди</h1>
         <p className="description">Генератор штрих-кодів та списку SKU</p>
         <DateWeekCompact />
       </div>
