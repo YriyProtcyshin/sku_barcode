@@ -263,7 +263,8 @@ body.modal-open {
 /* === Кнопка гамбургер === */
 .menu-button {
   position: absolute;
-  top: 30px;
+  top: calc(30px + env(safe-area-inset-top));
+  /* top: 30px; */
   left: 15px;
   z-index: 2;
   background: #0078d7;
