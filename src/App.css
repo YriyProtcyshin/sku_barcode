@@ -47,6 +47,7 @@ body {
 h1 {
   margin-bottom: 0px;
   margin-top: 3px;
+  padding-left: 49px;
 }
 .description {
   margin-top: 0px;
@@ -277,13 +278,13 @@ body.modal-open {
 /* === Выезжающее меню (внутри контейнера) === */
 .sidebar {
   position: absolute;
-  top: 0;
+  top: env(safe-area-inset-top);
   left: -295px;
   width: 250px;
-  height: 100%;
+  height: calc(100% - env(safe-area-inset-top));
   background-color: #1e1e1e;
   color: white;
-  padding: 20px;
+  padding: calc(20px + env(safe-area-inset-top)) 20px 20px 20px;
   transition: left 0.3s ease;
   z-index: 10;
   border-right: 2px solid #0078d7;
@@ -312,7 +313,7 @@ body.modal-open {
 
 .close-btn {
   position: absolute;
-  top: 10px;
+  top: calc(10px + env(safe-area-inset-top));
   right: 15px;
   background: none;
   border: none;

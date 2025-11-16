@@ -1,0 +1,63 @@
+.algorithmContainer {
+    background: #f7fafc;
+    border: 1px solid #cbd5e0;
+    border-radius: 12px;
+    padding: 10px;
+    margin-top: 30px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #1a202c;
+    text-align: left;
+}
+.algorithmContainer ul{
+    list-style: none;
+}
+
+.algorithmContainer h2 {
+    color: #2b6cb0;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.algorithmContainer h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #2b6cb0;
+}
+
+.algorithmList {
+    padding-left: 0px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.algorithmList li {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.oosNote {
+    background: #fff5f5;
+    border-left: 4px solid #e53e3e;
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.exampleSteps {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.exampleSteps li {
+    margin-bottom: 6px;
+}
+
+.result {
+    font-weight: bold;
+    color: #2f855a;
+    margin-top: 10px;
+}
+.exemp{
+    padding: 15px;
+    text-align: left;
+}

@@ -34,13 +34,32 @@ const NumberInput = ({ label, value, setValue }) => {
 };
 
 const Mileage_calculator = () => {
-  const [startOdo, setStartOdo] = useState("");
-  const [startFuel, setStartFuel] = useState("");
-  const [endOdo, setEndOdo] = useState("");
-  const [fuelAdded, setFuelAdded] = useState("");
-  const [endFuel, setEndFuel] = useState("");
+  // === ИНИЦИАЛИЗАЦИЯ ПОЛЕЙ ИЗ localStorage (важно!) ===
+  const [startOdo, setStartOdo] = useState(
+    () => localStorage.getItem("startOdo") || ""
+  );
+  const [startFuel, setStartFuel] = useState(
+    () => localStorage.getItem("startFuel") || ""
+  );
+  const [endOdo, setEndOdo] = useState(
+    () => localStorage.getItem("endOdo") || ""
+  );
+  const [fuelAdded, setFuelAdded] = useState(
+    () => localStorage.getItem("fuelAdded") || ""
+  );
+  const [endFuel, setEndFuel] = useState(
+    () => localStorage.getItem("endFuel") || ""
+  );
   const [consumption, setConsumption] = useState(null);
 
+  // === СОХРАНЕНИЕ ДАННЫХ В localStorage ===
+  useEffect(() => localStorage.setItem("startOdo", startOdo), [startOdo]);
+  useEffect(() => localStorage.setItem("startFuel", startFuel), [startFuel]);
+  useEffect(() => localStorage.setItem("endOdo", endOdo), [endOdo]);
+  useEffect(() => localStorage.setItem("fuelAdded", fuelAdded), [fuelAdded]);
+  useEffect(() => localStorage.setItem("endFuel", endFuel), [endFuel]);
+
+  // === РАСЧЁТ ВИТРАТ ===
   useEffect(() => {
     if (
       startOdo !== "" &&
@@ -75,7 +94,6 @@ const Mileage_calculator = () => {
           label="Показники одометра на початку:"
           value={startOdo}
           setValue={setStartOdo}
-          className={styles.horizontal_input}
         />
         <NumberInput
           label="Залишок пального на початку:"
@@ -87,7 +105,9 @@ const Mileage_calculator = () => {
           value={fuelAdded}
           setValue={setFuelAdded}
         />
-        <hr></hr>
+
+        <hr className={styles.decimal_line} />
+
         <NumberInput
           label="Показники одометра в кінці:"
           value={endOdo}
@@ -108,12 +128,12 @@ const Mileage_calculator = () => {
       </div>
 
       <div className={styles.formula}>
-        <h3>Формула витрати пального⛽:</h3>
+        <h3>Формула витрати пального ⛽:</h3>
         <div className={styles["formula-fraction"]}>
           <div className={styles.numerator}>
             Залишок на початку + Заправлено − Залишок у кінці
           </div>
-          <div className={styles.denominator}>Пробіг (Початок − Кінец)</div>
+          <div className={styles.denominator}>Пробіг (Початок − Кінець)</div>
           <div className={styles.multiply}>× 100</div>
         </div>
       </div>

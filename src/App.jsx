@@ -2,7 +2,10 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
 import Home from "./pages/Home";
 import Mileage_calculator from "./pages/Mileage_calculator";
+import CigaretteConverter from "./pages/CigaretteConverter";
+import RecommendedOrderCalculator from "./pages/RecommendedOrderCalculator";
 import "./App.css"; // добавим стили внизу
+
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +33,15 @@ function App() {
             <Link to="/Mileage_calculator" onClick={() => setIsOpen(false)}>
               ⛽ Mileage calculator
             </Link>
+            <Link to="/CigaretteConverter" onClick={() => setIsOpen(false)}>
+              🔃 Sticks Converter
+            </Link>
+            <Link
+              to="/RecommendedOrderCalculator"
+              onClick={() => setIsOpen(false)}
+            >
+              📦 Recommended Order Calculator
+            </Link>
           </nav>
         </div>
 
@@ -40,6 +52,14 @@ function App() {
             <Route
               path="/Mileage_calculator"
               element={<Mileage_calculator />}
+            />
+            <Route
+              path="/CigaretteConverter"
+              element={<CigaretteConverter />}
+            />
+            <Route
+              path="/RecommendedOrderCalculator"
+              element={<RecommendedOrderCalculator />}
             />
           </Routes>
         </div>
