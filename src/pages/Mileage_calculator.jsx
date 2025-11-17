@@ -22,6 +22,8 @@ const NumberInput = ({ label, value, setValue }) => {
         </button>
         <input
           type="number"
+          inputMode="numeric" // подсказывает браузеру открыть цифровую клавиатуру
+          pattern="[0-9]*"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />

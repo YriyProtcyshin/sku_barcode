@@ -98,7 +98,9 @@ export default function CigaretteConverter() {
       <div className={`${styles.field} ${styles.first}`}>
         <label>Тисяча штук:</label>
         <input
-          type="text"
+          type="number"
+          inputMode="numeric" // подсказывает браузеру открыть цифровую клавиатуру
+          pattern="[0-9]*"
           value={thousands}
           onChange={handleThousandsChange}
           placeholder="наприклад: 1.2 чи 1,2"
@@ -109,6 +111,8 @@ export default function CigaretteConverter() {
         <label>Пачки:</label>
         <input
           type="number"
+          inputMode="numeric" // подсказывает браузеру открыть цифровую клавиатуру
+          pattern="[0-9]*"
           step="1"
           value={packs}
           onChange={handlePacksChange}
@@ -119,6 +123,8 @@ export default function CigaretteConverter() {
         <label>Блоки:</label>
         <input
           type="number"
+          inputMode="numeric" // подсказывает браузеру открыть цифровую клавиатуру
+          pattern="[0-9]*"
           step="1"
           value={blocks}
           onChange={handleBlocksChange}
@@ -129,6 +135,8 @@ export default function CigaretteConverter() {
         <label>Короб:</label>
         <input
           type="number"
+          inputMode="numeric" // подсказывает браузеру открыть цифровую клавиатуру
+          pattern="[0-9]*"
           step="0.01"
           value={boxes}
           onChange={handleBoxesChange}
