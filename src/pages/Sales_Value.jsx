@@ -3,15 +3,23 @@ import styles from "./Sales_Value.module.css";
 
 export default function CigaretteSalesCalculator() {
   const [unit, setUnit] = useState("blocks"); // packs | blocks
-  const [daily, setDaily] = useState();
-  const [weekly, setWeekly] = useState();
-  const [monthly, setMonthly] = useState();
+  const [daily, setDaily] = useState("");
+  const [weekly, setWeekly] = useState("");
+  const [monthly, setMonthly] = useState("");
 
   const toPacks = (value) => (unit === "blocks" ? value * 10 : value);
   const fromPacks = (packs) => (unit === "blocks" ? packs / 10 : packs);
 
+  // --- DAILY ---
   const handleDailyChange = (value) => {
-    const val = Number(value) || 0;
+    if (value === "") {
+      setDaily("");
+      setWeekly("");
+      setMonthly("");
+      return;
+    }
+
+    const val = Number(value);
     const dPacks = toPacks(val);
     const wPacks = dPacks * 7;
     const mPacks = dPacks * 30;
@@ -21,8 +29,16 @@ export default function CigaretteSalesCalculator() {
     setMonthly(fromPacks(Math.round(mPacks)));
   };
 
+  // --- WEEKLY ---
   const handleWeeklyChange = (value) => {
-    const val = Number(value) || 0;
+    if (value === "") {
+      setDaily("");
+      setWeekly("");
+      setMonthly("");
+      return;
+    }
+
+    const val = Number(value);
     const wPacks = toPacks(val);
     const dPacks = wPacks / 7;
     const mPacks = dPacks * 30;
@@ -32,8 +48,16 @@ export default function CigaretteSalesCalculator() {
     setMonthly(fromPacks(Math.round(mPacks)));
   };
 
+  // --- MONTHLY ---
   const handleMonthlyChange = (value) => {
-    const val = Number(value) || 0;
+    if (value === "") {
+      setDaily("");
+      setWeekly("");
+      setMonthly("");
+      return;
+    }
+
+    const val = Number(value);
     const mPacks = toPacks(val);
     const dPacks = mPacks / 30;
     const wPacks = dPacks * 7;
@@ -43,10 +67,12 @@ export default function CigaretteSalesCalculator() {
     setWeekly(fromPacks(Math.round(wPacks)));
   };
 
-  const yearlyInPieces = Math.round(toPacks(monthly) * 20 * 12);
+  // --- YEAR RESULT ---
+  const yearlyInPieces =
+    monthly !== "" ? Math.round(toPacks(Number(monthly)) * 20 * 12) : "";
 
   return (
-    <div className="container">      
+    <div className="container">
       <div className="header">
         <h1>Об'єм продажу</h1>
         <p className="description">Калькулятор річного об'єму продажу</p>
@@ -75,7 +101,7 @@ export default function CigaretteSalesCalculator() {
         <span>Продажі на день ({unit === "packs" ? "пачок" : "блоків"})</span>
         <input
           type="number"
-          inputMode="numeric" // подсказывает браузеру открыть цифровую клавиатуру
+          inputMode="numeric"
           pattern="[0-9]*"
           className={styles.input}
           value={daily}
@@ -89,7 +115,7 @@ export default function CigaretteSalesCalculator() {
         </span>
         <input
           type="number"
-          inputMode="numeric" // подсказывает браузеру открыть цифровую клавиатуру
+          inputMode="numeric"
           pattern="[0-9]*"
           className={styles.input}
           value={weekly}
@@ -101,7 +127,7 @@ export default function CigaretteSalesCalculator() {
         <span>Продажі на місяць ({unit === "packs" ? "пачок" : "блоків"})</span>
         <input
           type="number"
-          inputMode="numeric" // подсказывает браузеру открыть цифровую клавиатуру
+          inputMode="numeric"
           pattern="[0-9]*"
           className={styles.input}
           value={monthly}
@@ -110,7 +136,7 @@ export default function CigaretteSalesCalculator() {
       </label>
 
       <div className={styles.result}>
-        Продажі на рік (штук сигарет): {yearlyInPieces ? yearlyInPieces:"" }
+        Продажі на рік (штук сигарет): {yearlyInPieces}
       </div>
     </div>
   );
