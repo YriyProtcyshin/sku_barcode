@@ -24,7 +24,7 @@ export default function CigaretteConverter() {
 
     const sticks = t * 1000;
     const p = Math.round(sticks / 20); // пачки — целое
-    const b = Math.round(p / 10);      // блоки — целое
+    const b = Math.round(p / 10); // блоки — целое
     const x = b / 50;
 
     setPacks(String(p));
@@ -58,7 +58,7 @@ export default function CigaretteConverter() {
     const b = parseInt(raw);
     if (isNaN(b)) return;
 
-    const p = b * 10;    // всегда целое
+    const p = b * 10; // всегда целое
     const sticks = p * 20;
     const t = sticks / 1000;
     const x = b / 50;
@@ -77,7 +77,7 @@ export default function CigaretteConverter() {
     if (isNaN(x)) return;
 
     const b = Math.round(x * 50); // блоки — целое
-    const p = b * 10;             // пачки — целое
+    const p = b * 10; // пачки — целое
     const sticks = p * 20;
     const t = sticks / 1000;
 
@@ -106,7 +106,7 @@ export default function CigaretteConverter() {
       </div>
 
       <div className={styles.field}>
-        <label>Пачки (20 шт):</label>
+        <label>Пачки:</label>
         <input
           type="number"
           step="1"
@@ -116,7 +116,7 @@ export default function CigaretteConverter() {
       </div>
 
       <div className={styles.field}>
-        <label>Блоки (10 пачок):</label>
+        <label>Блоки:</label>
         <input
           type="number"
           step="1"
@@ -126,7 +126,7 @@ export default function CigaretteConverter() {
       </div>
 
       <div className={styles.field}>
-        <label>Короб (50 блоків):</label>
+        <label>Короб:</label>
         <input
           type="number"
           step="0.01"
@@ -137,4 +137,3 @@ export default function CigaretteConverter() {
     </div>
   );
 }
-

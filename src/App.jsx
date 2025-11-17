@@ -5,9 +5,10 @@ import Home from "./pages/Home";
 import Mileage_calculator from "./pages/Mileage_calculator";
 import CigaretteConverter from "./pages/CigaretteConverter";
 import RecommendedOrderCalculator from "./pages/RecommendedOrderCalculator";
+import CigaretteSalesCalculator from "./pages/Sales_Value";
 import { ImBarcode } from "react-icons/im";
 import { LuFuel} from "react-icons/lu";
-import { FaExchangeAlt } from "react-icons/fa";
+import { FaExchangeAlt, FaChartBar } from "react-icons/fa";
 import { LuPackageCheck } from "react-icons/lu";
 import "./App.css"; // добавим стили внизу
 
@@ -62,6 +63,13 @@ function App() {
               <LuPackageCheck className="icon" />
               <span>Рекомендований заказ </span>
             </Link>
+            <Link
+              to="/CigaretteSalesCalculator"
+              onClick={() => setIsOpen(false)}
+            >
+              <FaChartBar className="icon" />
+              <span>Річний об'ем</span>
+            </Link>
           </nav>
         </div>
 
@@ -80,6 +88,10 @@ function App() {
             <Route
               path="/RecommendedOrderCalculator"
               element={<RecommendedOrderCalculator />}
+            />
+            <Route
+              path="/CigaretteSalesCalculator"
+              element={<CigaretteSalesCalculator />}
             />
           </Routes>
         </div>
