@@ -110,7 +110,7 @@ export default function CigaretteSalesCalculator() {
       </label>
 
       <div className={styles.result}>
-        Продажі на рік (штук сигарет): {yearlyInPieces}
+        Продажі на рік (штук сигарет): {yearlyInPieces ? yearlyInPieces:"" }
       </div>
     </div>
   );

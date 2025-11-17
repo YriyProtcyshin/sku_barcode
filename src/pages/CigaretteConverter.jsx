@@ -99,8 +99,6 @@ export default function CigaretteConverter() {
         <label>Тисяча штук:</label>
         <input
           type="number"
-          inputMode="numeric" // подсказывает браузеру открыть цифровую клавиатуру
-          pattern="[0-9]*"
           value={thousands}
           onChange={handleThousandsChange}
           placeholder="наприклад: 1.2 чи 1,2"
@@ -135,8 +133,6 @@ export default function CigaretteConverter() {
         <label>Короб:</label>
         <input
           type="number"
-          inputMode="numeric" // подсказывает браузеру открыть цифровую клавиатуру
-          pattern="[0-9]*"
           step="0.01"
           value={boxes}
           onChange={handleBoxesChange}
