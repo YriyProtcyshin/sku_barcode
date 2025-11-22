@@ -130,6 +130,7 @@ export default function CigaretteSalesCalculator() {
         <span>Продажі на день ({unit === "packs" ? "пачок" : "блоків"})</span>
         <input
           type="number"
+          inputMode="numeric"
           className={styles.input}
           value={daily}
           onChange={(e) => handleDailyChange(e.target.value)}
@@ -143,6 +144,7 @@ export default function CigaretteSalesCalculator() {
         </span>
         <input
           type="number"
+          inputMode="numeric"
           className={styles.input}
           value={weekly}
           onChange={(e) => handleWeeklyChange(e.target.value)}
@@ -154,6 +156,7 @@ export default function CigaretteSalesCalculator() {
         <span>Продажі на місяць ({unit === "packs" ? "пачок" : "блоків"})</span>
         <input
           type="number"
+          inputMode="numeric"
           className={styles.input}
           value={monthly}
           onChange={(e) => handleMonthlyChange(e.target.value)}
@@ -195,6 +198,7 @@ export default function CigaretteSalesCalculator() {
           <span>Продажи в неделю (банок по 15 штук)</span>
           <input
             type="number"
+            inputMode="numeric"
             className={styles.input}
             value={weekly15}
             onChange={(e) => handleWeekly15Change(e.target.value)}
@@ -205,6 +209,7 @@ export default function CigaretteSalesCalculator() {
           <span>Продажи в неделю (банок по 20 штук)</span>
           <input
             type="number"
+            inputMode="numeric"
             className={styles.input}
             value={weekly20}
             onChange={(e) => handleWeekly20Change(e.target.value)}
