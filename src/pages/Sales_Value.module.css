@@ -113,5 +113,41 @@
     font-weight: 600;
     text-align: center;
     font-size: 18px;
-    margin: 40px 0;
+    margin: 30px 0 10px;
+}
+.all_switcher{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+.all_switcher_title{
+    margin-top: 10px;
+}
+.all_switcher_block{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    gap: 12px;
+}
+.all_switcher_radio {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 4px;
+}
+
+.hr {
+    border: none;
+    height: 2px;
+    width: 100%;
+    margin: 25px 0;
+    border-radius: 2px;
+    background: linear-gradient(to right,
+            transparent,
+            #cfcfcf,
+            transparent);
 }
