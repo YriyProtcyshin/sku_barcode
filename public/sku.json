@@ -29,6 +29,9 @@
     "Rothmans Essence Red": "4820286860763",
     "Rothmans Essence Blue": "4820286860794",
 
+    "Rothmans Essence Demi Blue": "4820192689700",
+    "Rothmans Essence Demi Silver": "4820192689731",
+
     "Rothmans Essence Red 30": "4820286861128",
     "Rothmans Essence Blue 30": "4820286861098",
 
@@ -68,7 +71,10 @@
     "Lucky Strike Black Series Green": "4820286860558",
     "Lucky Strike Black Series Purple": "4820192687324",
     "Lucky Strike Crafted 1871 Red": "4820286860855",
-    "Lucky Strike Crafted 1871 Blue": "4820286860824"
+    "Lucky Strike Crafted 1871 Blue": "4820286860824",
+
+    "Lucky Strike Demi Red":"4820286861753",
+    "Lucky Strike Demi Blue":"4820286861784"
   },
   "Capri": {
     "Capri Azzurro": "4820001988352",
