@@ -104,6 +104,7 @@
     "Neo Demi Ruby Boost": "4820215629423",
     "Neo Demi Purple Yellow Boost": "4820215629317",
     "Neo Demi Green Boost": "4820270360026",
+    "Neo Demi Rouge Boost":	"4820270364956",
     "Neo Demi Terracotta Tobacco": "4820215622219",
     "Neo Demi Royale Boost": "4820270364291",
     "Neo Demi Scarlet Boost": "4820270364369"
@@ -126,27 +127,41 @@
     "VELO Mighty Peppermint Екстра-Інтенсивний": "4820270363102",
     "VELO Mighty Peppermint Інтенсивний": "4820270363133",
     "VELO Mighty Peppermint Класичний": "4820270362907",
+
+    "VELO Freezing Peppermint Екстра-Інтенсивний":"4820270365175,
+    "VELO Freezing Peppermint Класичний":"4820270365236",
+    
     "VELO Crispy Peppermint Класичний": "4820270362877",
 
     "VELO Breezy Mango Класичний": "4820270362990",
     "VELO Breezy Mango М'який": "4820270364284",
 
+    "VELO Tropical Mango Класичний":"4820270365267",
+    "VELO Tropical Mango М'який":"4820270365359",
+
     "VELO Spiffy Spearmint Екстра-Інтенсивний": "4820270362716",
     "VELO Spiffy Spearmint Класичний": "4820270364093",
     "VELO Spiffy Spearmint М'який": "4820270362846",
+    
+    "VELO Bright Spearmint Екстра-Інтенсивний":"4820270365144",
+    "VELO Bright Spearmint Класичний":"4820270365328",
+    "VELO Bright Spearmint М'який":"4820270365380",
 
     "VELO Icy Berries М'який": "4820270362815",
 
     "VELO Groovy Grape Класичний": "4820270362969",
+    "VELO Purple Grape Класичний":"4820270365298",
 
     "VELO Mango Flame Інтенсивний": "4820270362594",
     "VELO Lime Flame Інтенсивний": "4820270362624",
+    
     "VELO Eucalyptus Storm Екстра-Інтенсивний": "4820270362563",
 
     "VELO Wintry Watermelon Класичний": "4820270362686",
 
     "VELO Cherry Ice Класичний": "4820270364253",
     "VELO Strawberry Ice Класичний": "4820270364222",
+    
     "VELO Orange Spark Екстра-Інтенсивний": "4820270365038",
     "VELO Peppermint Storm Екстра-Інтенсивний": "4820270365090",
     "VELO Sweet Papaya Класичний": "4820270364864",
@@ -154,7 +169,8 @@
     "VELO Tropical Mango Інтенсивний":"4820270365441",
     "VELO Peach Ice Класичний":"4820270365472",
     "VELO Smooth Peppermint Класичний":"4820270365533",
-    "VELO Purple Grape Класичний":"4820270365502"
+    "VELO Purple Grape Класичний":"4820270365502"     
+    
   },
 
   "GLO": {
