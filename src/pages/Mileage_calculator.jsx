@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./mileage_calculator.module.css";
 
-// Компонент для числового поля с кнопками + и -
+// Компонент для числового поля з кнопками + і -
 const NumberInput = ({ label, value, setValue }) => {
   const handleIncrement = () => {
     const num = parseFloat(value);
@@ -21,7 +22,7 @@ const NumberInput = ({ label, value, setValue }) => {
           -
         </button>
         <input
-          type="number"          
+          type="number"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
@@ -34,7 +35,8 @@ const NumberInput = ({ label, value, setValue }) => {
 };
 
 const Mileage_calculator = () => {
-  // === ИНИЦИАЛИЗАЦИЯ ПОЛЕЙ ИЗ localStorage (важно!) ===
+  const { t } = useTranslation();
+
   const [startOdo, setStartOdo] = useState(
     () => localStorage.getItem("startOdo") || ""
   );
@@ -52,14 +54,16 @@ const Mileage_calculator = () => {
   );
   const [consumption, setConsumption] = useState(null);
 
-  // === СОХРАНЕНИЕ ДАННЫХ В localStorage ===
-  useEffect(() => localStorage.setItem("startOdo", startOdo), [startOdo]);
-  useEffect(() => localStorage.setItem("startFuel", startFuel), [startFuel]);
-  useEffect(() => localStorage.setItem("endOdo", endOdo), [endOdo]);
-  useEffect(() => localStorage.setItem("fuelAdded", fuelAdded), [fuelAdded]);
-  useEffect(() => localStorage.setItem("endFuel", endFuel), [endFuel]);
+  // Збереження даних в localStorage
+  useEffect(() => {
+    localStorage.setItem("startOdo", startOdo);
+    localStorage.setItem("startFuel", startFuel);
+    localStorage.setItem("fuelAdded", fuelAdded);
+    localStorage.setItem("endOdo", endOdo);
+    localStorage.setItem("endFuel", endFuel);
+  }, [startOdo, startFuel, fuelAdded, endOdo, endFuel]);
 
-  // === РАСЧЁТ ВИТРАТ ===
+  // Розрахунок витрат
   useEffect(() => {
     if (
       startOdo !== "" &&
@@ -85,23 +89,23 @@ const Mileage_calculator = () => {
   return (
     <div className="container">
       <div className="header">
-        <h1>Паливний звіт</h1>
-        <p className="description">Калькулятор витрат палива</p>
+        <h1>{t("mileage.title")}</h1>
+        <p className="description">{t("mileage.description")}</p>
       </div>
 
       <div className={styles.inputs}>
         <NumberInput
-          label="Показники одометра на початку:"
+          label={t("mileage.startOdo")}
           value={startOdo}
           setValue={setStartOdo}
         />
         <NumberInput
-          label="Залишок пального на початку:"
+          label={t("mileage.startFuel")}
           value={startFuel}
           setValue={setStartFuel}
         />
         <NumberInput
-          label="Заправлено в поточному місяці:"
+          label={t("mileage.fuelAdded")}
           value={fuelAdded}
           setValue={setFuelAdded}
         />
@@ -109,13 +113,13 @@ const Mileage_calculator = () => {
         <hr className={styles.decimal_line} />
 
         <NumberInput
-          label="Показники одометра в кінці:"
+          label={t("mileage.endOdo")}
           value={endOdo}
           setValue={setEndOdo}
         />
 
         <NumberInput
-          label="Залишок у баку в кінці:"
+          label={t("mileage.endFuel")}
           value={endFuel}
           setValue={setEndFuel}
         />
@@ -123,18 +127,20 @@ const Mileage_calculator = () => {
 
       <div className={styles.result}>
         {consumption !== null
-          ? `Витрата пального: ${consumption} л/100 км`
-          : "Введіть усі дані для розрахунку"}
+          ? t("mileage.result", { value: consumption })
+          : t("mileage.enterData")}
       </div>
 
       <div className={styles.formula}>
-        <h3>Формула витрати пального ⛽:</h3>
+        <h3>{t("mileage.formulaTitle")}</h3>
         <div className={styles["formula-fraction"]}>
           <div className={styles.numerator}>
-            Залишок на початку + Заправлено − Залишок у кінці
+            {t("mileage.formulaNumerator")}
           </div>
-          <div className={styles.denominator}>Пробіг (Початок − Кінець)</div>
-          <div className={styles.multiply}>× 100</div>
+          <div className={styles.denominator}>
+            {t("mileage.formulaDenominator")}
+          </div>
+          <div className={styles.multiply}>{t("mileage.formulaMultiply")}</div>
         </div>
       </div>
     </div>

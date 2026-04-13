@@ -1,105 +1,116 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./recommendedOrderCalculator.module.css";
 
+const RecommendedOrderExplanation = () => {
+  const { t } = useTranslation();
 
-const RecommendedOrderExplanation =()=> {
   return (
     <div className={styles.algorithmContainer}>
-      <h2>Алгоритм розрахунку рекомендованого замовлення</h2>
+      <h2>{t("order.algorithmTitle")}</h2>
 
       <ul className={styles.algorithmList}>
         <li>
-          <strong>1️⃣ Збір даних:</strong>
+          <strong>{t("order.step1Title")}</strong>
           <p>
-            Беремо продажі товару за останні тижні (зазвичай 4 тижні).
-            <br />
-            Визначаємо поточний залишок товару в торговій точці.
+            {t("order.step1").split('\n').map((line, i) => (
+              <React.Fragment key={i}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </p>
         </li>
 
         <li>
-          <strong>2️⃣ Вирахування середнього денного продажу:</strong>
+          <strong>{t("order.step2Title")}</strong>
           <p>
-            Сумуємо продажі за всі тижні.
-            <br />
-            Ділимо на кількість тижнів × 7 (отримуємо середню кількість товару,
-            що продається за день).
+            {t("order.step2a").split('\n').map((line, i) => (
+              <React.Fragment key={i}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </p>
           <p>
-            <em>Формула:</em>
+            <em>{t("order.step2formula")}</em>
             <br />
-            Середній денний продаж = (Сума продажів за тижні) / (Кількість
-            тижнів × 7)
+            {t("order.step2formulaText")}
           </p>
         </li>
 
         <li>
-          <strong>3️⃣ Визначення цільового запасу:</strong>
+          <strong>{t("order.step3Title")}</strong>
           <p>
-            Обираємо, на скільки днів хочемо мати запас (зазвичай 3–14 днів, за
-            замовчуванням 7).
-            <br />
-            Множимо середній денний продаж на кількість днів.
+            {t("order.step3a").split('\n').map((line, i) => (
+              <React.Fragment key={i}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </p>
           <p>
-            <em>Формула:</em>
+            <em>{t("order.step3formula")}</em>
             <br />
-            Цільовий запас = Середній денний продаж × Кількість днів запасу
+            {t("order.step3formulaText")}
           </p>
           <p className={styles.oosNote}>
-            Якщо в точці OOS (залишок = 0) — застосовуємо страховий коефіцієнт
-            1.5, щоб компенсувати недостачу продажів:
-            <br />
-            Цільовий запас = Цільовий запас × 1.5
+            {t("order.step3oos").split('\n').map((line, i) => (
+              <React.Fragment key={i}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </p>
         </li>
 
         <li>
-          <strong>4️⃣ Розрахунок рекомендованого замовлення:</strong>
-          <p>Рекомендований заказ = Цільовий запас − Поточний залишок</p>
+          <strong>{t("order.step4Title")}</strong>
+          <p>{t("order.step4a")}</p>
           <p>
-            Якщо результат від’ємний — заказ = 0.
-            <br />
-            Якщо результат додатній — це кількість товару, яке потрібно
-            замовити.
+            {t("order.step4b").split('\n').map((line, i) => (
+              <React.Fragment key={i}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </p>
         </li>
 
         <li>
-          <strong>5️⃣ Підсумок:</strong>
+          <strong>{t("order.step5Title")}</strong>
           <p>
-            Якщо залишок {">"} 0 → звичайний алгоритм.
-            <br />
-            Якщо залишок = 0 → алгоритм враховує OOS і збільшує запас на
-            страховий коефіцієнт.
+            {t("order.step5a").split('\n').map((line, i) => (
+              <React.Fragment key={i}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </p>
           <p>
-            В результаті отримуємо оптимальний заказ, який запобігає OOS і не
-            створює зайвого накопичення.
+            {t("order.step5b")}
           </p>
         </li>
       </ul>
-          
-        <h3>🔹 Приклад розрахунку</h3>
-        <p>Продажі за 4 тижні: 14, 12, 16, 18 пачок</p>
-        <p>Поточний залишок: 0 (OOS)</p>
-        <p>Обрано запас на 7 днів</p>
 
-        <ul className={styles.exampleSteps}>
-          <li>Середня тижнева продаж = (14+12+16+18)/4 = 15</li>
-          <li>Середня денна продаж = 15 / 7 ≈ 2,14</li>
-          <li>Цільовий запас = 2,14 × 7 ≈ 15</li>
-          <li>Застосовуємо страховий коефіцієнт (OOS) = 15 × 1.5 ≈ 23</li>
-          <li>Рекомендований заказ = 23 − 0 = 23 пачки</li>
-        </ul>
+      <h3>{t("order.exampleTitle")}</h3>
+      <p>{t("order.example1")}</p>
+      <p>{t("order.example2")}</p>
+      <p>{t("order.example3")}</p>
 
-        <p className={styles.result}>
-          ✅ Результат: замовити 23 пачки, щоб компенсувати OOS і вистачило на 7
-          днів.
-        </p>
-      
+      <ul className={styles.exampleSteps}>
+        <li>{t("order.exStep1")}</li>
+        <li>{t("order.exStep2")}</li>
+        <li>{t("order.exStep3")}</li>
+        <li>{t("order.exStep4")}</li>
+        <li>{t("order.exStep5")}</li>
+      </ul>
+
+      <p className={styles.result}>
+        {t("order.exResult")}
+      </p>
     </div>
   );
-}
+};
 
 export default RecommendedOrderExplanation;

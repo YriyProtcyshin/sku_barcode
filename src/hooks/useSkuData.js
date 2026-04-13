@@ -1,14 +1,23 @@
 import { useState, useEffect } from "react";
 
+// Хук повертає коди статусів (ключі i18n), а не рядки —
+// так компонент сам перекладає через t(loadingStatus)
 export function useSkuData() {
   const [skuList, setSkuList] = useState(() => {
-    const saved = localStorage.getItem("sku_data");
-    return saved ? JSON.parse(saved) : {};
+    try {
+      const saved = localStorage.getItem("sku_data");
+      return saved ? JSON.parse(saved) : {};
+    } catch {
+      localStorage.removeItem("sku_data");
+      localStorage.removeItem("sku_etag");
+      localStorage.removeItem("sku_lastModified");
+      return {};
+    }
   });
 
   const [loadingStatus, setLoadingStatus] = useState(() => {
     const saved = localStorage.getItem("sku_data");
-    return saved ? "✅ Данные актуальны" : "Загрузка данных...";
+    return saved ? "common.ready" : "common.loading";
   });
 
   const [lastModified, setLastModified] = useState(() => {
@@ -18,9 +27,8 @@ export function useSkuData() {
   useEffect(() => {
     async function loadSkuData() {
       try {
-        setLoadingStatus("Проверка обновлений...");
+        setLoadingStatus("common.checking");
 
-        // HEAD-запрос для проверки изменений
         const headRes = await fetch("/sku.json", { method: "HEAD" });
         const etag = headRes.headers.get("etag");
         const modified = headRes.headers.get("last-modified");
@@ -39,9 +47,8 @@ export function useSkuData() {
           modifiedTimestamp !== prevModifiedTimestamp ||
           !savedData
         ) {
-          setLoadingStatus("🔄 Обновление данных...");
+          setLoadingStatus("common.updating");
 
-          // fetch с bypass кеша браузера и сервис-воркера
           const jsonRes = await fetch("/sku.json", { cache: "reload" });
           const data = await jsonRes.json();
 
@@ -52,23 +59,31 @@ export function useSkuData() {
           localStorage.setItem("sku_etag", etag);
           localStorage.setItem("sku_lastModified", modified);
 
-          setLoadingStatus("✅ Данные актуальны");
+          setLoadingStatus("common.ready");
         } else {
-          setSkuList(JSON.parse(savedData));
+          try {
+            setSkuList(JSON.parse(savedData));
+          } catch {
+            localStorage.removeItem("sku_data");
+          }
           setLastModified(prevModified);
-          setLoadingStatus("✅ Данные актуальны (из localStorage)");
+          setLoadingStatus("common.readyCache");
         }
       } catch (err) {
-        console.error("Ошибка загрузки sku.json:", err);
+        console.error("Помилка завантаження sku.json:", err);
 
         const savedData = localStorage.getItem("sku_data");
         const savedModified = localStorage.getItem("sku_lastModified") || "";
         if (savedData) {
-          setSkuList(JSON.parse(savedData));
+          try {
+            setSkuList(JSON.parse(savedData));
+          } catch {
+            localStorage.removeItem("sku_data");
+          }
           setLastModified(savedModified);
-          setLoadingStatus("⚠️ Используются локальные данные (оффлайн)");
+          setLoadingStatus("common.offline");
         } else {
-          setLoadingStatus("❌ Ошибка загрузки данных");
+          setLoadingStatus("common.error");
         }
       }
     }

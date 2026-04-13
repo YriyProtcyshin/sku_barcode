@@ -1,19 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 import Accordion from "../Components/Accordion/Accordion";
 import FilteredList from "../Components/FilteredList/FilteredList";
 import Barcode from "../Components/Barcode/Barcode";
 import DateWeekCompact from "../Components/DateAndWeek/DateAndWeek";
 
-// ✅ Импортируем Toastify
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// импортирую хук загрузки данных с проверкой версии
-import { useSkuData } from "../hooks/useSkuData"; // импортируем хук
+import { useSkuData } from "../hooks/useSkuData";
 
 const Home = () => {
-  // const [skuList, setSkuList] = useState({});
+  const { t } = useTranslation();
   const { skuList, loadingStatus, lastModified } = useSkuData();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedItems, setSelectedItems] = useState({});
@@ -21,17 +20,7 @@ const Home = () => {
   const [hideBarcodes, setHideBarcodes] = useState(false);
   const [showSelectedList, setShowSelectedList] = useState(false);
 
-  console.log("loadingStatus:", loadingStatus);
-
-  // 🔹 Загрузка JSON
-  // useEffect(() => {
-  //   fetch("/sku.json")
-  //     .then((res) => res.json())
-  //     .then((data) => setSkuList(data))
-  //     .catch((err) => console.error("Ошибка загрузки sku.json:", err));
-  // }, []);
-
-  // 🔹 Переключение выбранных позиций
+  // 🔹 Переключення вибраних позицій
   const toggleItem = (brand, model, barcode) => {
     const key = `${brand}-${model}`;
     setSelectedItems((prev) => {
@@ -42,7 +31,7 @@ const Home = () => {
     });
   };
 
-  // 🔹 Удаление выбранного элемента
+  // 🔹 Видалення вибраного елемента
   const removeSelectedItem = (key) => {
     setSelectedItems((prev) => {
       const updated = { ...prev };
@@ -51,23 +40,23 @@ const Home = () => {
     });
   };
 
-  // 🔹 Удаление всех выбранных
+  // 🔹 Видалення всіх вибраних
   const clearAllSelected = () => setSelectedItems({});
 
-  // 🔹 Открытие модального окна
+  // 🔹 Відкриття модального вікна
   const openModal = (model, barcode) => {
     setModalData({ model, barcode });
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
   };
 
-  // 🔹 Закрытие модального окна
+  // 🔹 Закрити модальне вікно
   const closeModal = () => {
     setModalData(null);
-    document.body.style.overflow = "auto";
+    document.body.classList.remove("modal-open");
   };
 
-  // 🔹 Фильтрация по поиску
-  const getFilteredData = () => {
+  // 🔹 Фільтрація за пошуком (мемоізовано)
+  const filteredData = useMemo(() => {
     if (!searchTerm.trim()) return null;
     const filtered = {};
     Object.entries(skuList).forEach(([brand, models]) => {
@@ -79,25 +68,24 @@ const Home = () => {
       }
     });
     return filtered;
-  };
+  }, [searchTerm, skuList]);
 
-  const filteredData = getFilteredData();
   const selectedList = Object.entries(selectedItems);
 
-  // 🔹 Копирование выбранных позиций
+  // 🔹 Копіювання вибраних позицій
   const copySelectedToClipboard = async () => {
     const names = selectedList
-      .map(([_, { brand, model }]) => `${model}`)
+      .map(([_, { model }]) => `${model}`)
       .join("\n");
 
     if (!names) {
-      toast.warning("Нет выбранных позиций ⚠️", { autoClose: 2000 });
+      toast.warning(t("home.noItemsWarning"), { autoClose: 2000 });
       return;
     }
 
     try {
       await navigator.clipboard.writeText(names);
-      toast.success("Список скопійовано!", { autoClose: 2000 });
+      toast.success(t("home.copiedSuccess"), { autoClose: 2000 });
     } catch {
       const textarea = document.createElement("textarea");
       textarea.value = names;
@@ -107,33 +95,33 @@ const Home = () => {
       textarea.select();
       document.execCommand("copy");
       document.body.removeChild(textarea);
-      toast.success("Список скопійовано!", { autoClose: 2000 });
+      toast.success(t("home.copiedSuccess"), { autoClose: 2000 });
     }
   };
 
   return (
     <div className="container">
       <div className="header">
-        <h1>Штрих коди</h1>
-        <p className="description">Генератор штрих-кодів та списку SKU</p>
+        <h1>{t("home.title")}</h1>
+        <p className="description">{t("home.description")}</p>
         <DateWeekCompact />
       </div>
-      {/* Чекбокс для скрытия штрихкодов */}
+
       <label className="hide-barcode-toggle">
         <input
           type="checkbox"
           checked={hideBarcodes}
           onChange={(e) => setHideBarcodes(e.target.checked)}
         />
-        Не відображати штрихкод
+        {t("home.hideBarcode")}
       </label>
 
       {showSelectedList ? (
         <div className="selected-list">
-          <h2>Вибрані позиції</h2>
+          <h2>{t("home.selectedTitle")}</h2>
 
           {selectedList.length === 0 ? (
-            <p>Немає вибраних позицій</p>
+            <p>{t("home.noSelected")}</p>
           ) : (
             <>
               {selectedList.map(([key, item]) => (
@@ -162,27 +150,27 @@ const Home = () => {
           )}
           <div className="footer">
             <button className="copy-btn" onClick={copySelectedToClipboard}>
-              📋 Копіювати вибрані
+              {t("home.copySelected")}
             </button>
 
             <button
               className="show-selected-btn"
               onClick={() => setShowSelectedList(false)}
             >
-              Назад до списку
+              {t("home.backToList")}
             </button>
             <button className="clear-selected" onClick={clearAllSelected}>
-              Очистити список
+              {t("home.clearList")}
             </button>
           </div>
         </div>
       ) : (
         <>
-          {/* Поиск */}
+          {/* Пошук */}
           <div className="search-section">
             <input
               type="text"
-              placeholder="Пошук sku ..."
+              placeholder={t("home.searchPlaceholder")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -191,10 +179,11 @@ const Home = () => {
               disabled={!searchTerm}
               className="clear-btn"
             >
-              Очистити
+              {t("home.clearSearch")}
             </button>
           </div>
-          {/* Основной список */}
+
+          {/* Основний список */}
           {filteredData ? (
             <FilteredList
               data={filteredData}
@@ -213,23 +202,23 @@ const Home = () => {
             />
           )}
           <div className="last-modified">
-            Дата оновлення файла з SKU: <br /> {lastModified}
+            {t("common.dataUpdated")} <br /> {lastModified}
           </div>
           <div className="footer">
             <button
               className="show-selected-btn"
               onClick={() => setShowSelectedList(true)}
             >
-              Показати вибрані
+              {t("home.showSelected")}
             </button>
             <button className="clear-selected" onClick={clearAllSelected}>
-              Очистити список
+              {t("home.clearList")}
             </button>
           </div>
         </>
       )}
 
-      {/* Модальное окно */}
+      {/* Модальне вікно */}
       {modalData && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -242,7 +231,6 @@ const Home = () => {
         </div>
       )}
 
-      {/* ✅ Контейнер для уведомлений*/}
       <ToastContainer position="top-right" />
     </div>
   );
