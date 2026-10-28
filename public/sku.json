@@ -12,9 +12,8 @@
     "Kent Crystal Silver": "4820192684590",
     "Kent Crystal Blue": "4820192685412",
     "Kent Mode D-series Blue": "4820192688086",
-    "Kent Mode D-series Silver": "4820192688116",
-    "Kent Mode S-series Blue": "4820192688147",
-    "Kent Mode S-series Silver": "4820192688178"
+    "Kent Mode D-series Silver": "4820192688116"
+    
   },
   "Rothmans": {
     "Rothmans Demi Blue": "48209571",
@@ -43,14 +42,7 @@
     "Rothmans Superslims Rose": "4820286860381",
     "Rothmans Superslims Green": "4820286860473"
   },
-  "Rothmans Royals": {
-    "Rothmans Royals Red": "4820192686969",
-    "Rothmans Royals Blue": "4820192681841",
-    "Rothmans Royals Red 25": "4820192687263",
-    "Rothmans Royals Blue 25": "4820192683722",
-    "Rothmans Royals Demi Blue": "4820192681810",
-    "Rothmans Royals Demi_Silver": "4820192685917"
-  },
+  
   "Прилуки": {
     "Прилуки Класичні 8": "4820001988093",
     "Прилуки Класичні 10": "4820192686907",
@@ -109,17 +101,12 @@
     "Neo Demi Royale Boost": "4820270364291",
     "Neo Demi Scarlet Boost": "4820270364369"
   },
-  "Neo Sticks": {
-    "Neo Sticks Boost Royale": "4820215621007",
-    "Neo Sticks Boost Scarlet": "4820215621014",
-    "Neo Sticks Smooth Tobacco": "4820215626743"
-  },
+  
   "Lucky Strike Sticks": {
     "Lucky Strike Sticks Purple Switch": "4820270364017",
     "Lucky Strike Sticks Green Switch": "4820270363935",
     "Lucky Strike Sticks Rich Tobacco": "4820270363836",
-    "Lucky Strike Sticks Gold Tobacco": "4820270363881",
-    "Lucky Strike Sticks Dark Tobacco": "4820270364475",
+    
     "Lucky Strike Sticks Yellow Switch": "4820270364529",
     "Lucky Strike Sticks Red Switch": "4820270365083"
   },
@@ -136,8 +123,8 @@
     "VELO Breezy Mango Класичний": "4820270362990",
     "VELO Breezy Mango М'який": "4820270364284",
 
-    "VELO Tropical Mango Класичний":"4820270365267",
-    "VELO Tropical Mango М'який":"4820270365359",
+    "VELO Tropical Mango КласичнийⓃ":"4820270365267",
+    "VELO Tropical Mango М'якийⓃ":"4820270365359",
 
     "VELO Spiffy Spearmint Екстра-Інтенсивний": "4820270362716",
     "VELO Spiffy Spearmint Класичний": "4820270364093",
@@ -150,26 +137,20 @@
     "VELO Icy Berries М'який": "4820270362815",
 
     "VELO Groovy Grape Класичний": "4820270362969",
-    "VELO Purple Grape Класичний Ⓝ":"4820270365298",
+    "VELO Purple Grape Класичний Ⓝ":"4820270365298",    
 
-    "VELO Mango Flame Інтенсивний": "4820270362594",
-    "VELO Lime Flame Інтенсивний": "4820270362624",
+    "VELO Cherry Ice Класичний": "4820270364253",   
     
-    "VELO Eucalyptus Storm Екстра-Інтенсивний": "4820270362563",
-
-    "VELO Wintry Watermelon Класичний": "4820270362686",
-
-    "VELO Cherry Ice Класичний": "4820270364253",
-    "VELO Strawberry Ice Класичний": "4820270364222",
     
-    "VELO Orange Spark Екстра-Інтенсивний": "4820270365038",
     "VELO Peppermint Storm Екстра-Інтенсивний": "4820270365090",
     "VELO Sweet Papaya Класичний": "4820270364864",
 
     "VELO Tropical Mango Інтенсивний":"4820270365441",
     "VELO Peach Ice Класичний":"4820270365472",
     "VELO Smooth Peppermint Класичний":"4820270365533",
-    "VELO Purple Grape Класичний":"4820270365502"     
+    "VELO Purple Grape Класичний":"4820270365502",
+    "VELO Mini Freezing Peppermint Intensive":"4820270366486",
+    "VELO Mini Icy Berries Classic":"4820270366387"
     
   },
 
@@ -188,6 +169,9 @@
   },
 
   "Kent OLD": {
+    "Kent Mode S-series Blue": "4820192688147",
+    "Kent Mode S-series Silver": "4820192688178",
+    
     "Kent Lumina": "4820192687676",
     "Kent Lumina nano": "4820192687737",
     "Kent Feel Sensio": "4820192686877",
@@ -203,6 +187,16 @@
     "Rothmans Demi Duo": "4820192686990",
     "Rothmans Demi Mix": "4820192687027"
   },
+
+  "Rothmans Royals": {
+    "Rothmans Royals Red": "4820192686969",
+    "Rothmans Royals Blue": "4820192681841",
+    "Rothmans Royals Red 25": "4820192687263",
+    "Rothmans Royals Blue 25": "4820192683722",
+    "Rothmans Royals Demi Blue": "4820192681810",
+    "Rothmans Royals Demi_Silver": "4820192685917"
+  },
+  
   "NEO OLD": {
     "NEO DEMI BRONZE TOBACCO": "4820215629959",
     "NEO DEMI GOLDEN TOBACCO": "4820270361634",
@@ -212,8 +206,27 @@
     "Neo Sticks Rich Tobacco": "4820215620963",
     "Neo Sticks Smooth Tobacco": "4820215626743"
   },
+  
+   "Lucky Strike Sticks OLD":{
+     "Lucky Strike Sticks Gold Tobacco": "4820270363881",
+    "Lucky Strike Sticks Dark Tobacco": "4820270364475"
+   },
+  
+  "Neo Sticks OLD": {
+    "Neo Sticks Boost Royale": "4820215621007",
+    "Neo Sticks Boost Scarlet": "4820215621014",
+    "Neo Sticks Smooth Tobacco": "4820215626743"
+  },
+  
   "VELO OLD": {
+    "VELO Orange Spark Екстра-Інтенсивний": "4820270365038",
     "VELO Frosty Lemon Класичний": "4820270363027",
+    "VELO Eucalyptus Storm Екстра-Інтенсивний": "4820270362563",
+    "VELO Strawberry Ice Класичний": "4820270364222",
+      "VELO Mango Flame Інтенсивний": "4820270362594",
+    "VELO Lime Flame Інтенсивний": "4820270362624",
+
+    "VELO Wintry Watermelon Класичний": "4820270362686",
     "VELO Blushy Berry Intensive": "4820270363058",
     "VELO ICY Berryes Classic": "4820270362938"
   }
