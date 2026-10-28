@@ -1,82 +1,58 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./Sales_Value.module.css";
 
 export default function CigaretteSalesCalculator() {
-  const [unit, setUnit] = useState("blocks"); // packs | blocks
+  const { t, i18n } = useTranslation();
+  const [unit, setUnit] = useState("blocks");
   const [daily, setDaily] = useState("");
   const [weekly, setWeekly] = useState("");
   const [monthly, setMonthly] = useState("");
+  const [unitAll, setUnitAll] = useState(35);
 
-  const [unitAll, setUnitAll] = useState(35); // чек боксы для выбора доли компании
-
-  // --- NICOTINE CANS ---
   const [weekly15, setWeekly15] = useState("");
   const [weekly20, setWeekly20] = useState("");
   const [monthly15, setMonthly15] = useState("");
   const [monthly20, setMonthly20] = useState("");
 
+  const locale = i18n.resolvedLanguage === "uk" ? "uk-UA" : "en-US";
+  const unitLabel = unit === "packs" ? t("sales.packsUnit") : t("sales.blocksUnit");
+
   const toPacks = (value) => (unit === "blocks" ? value * 10 : value);
   const fromPacks = (packs) => (unit === "blocks" ? packs / 10 : packs);
 
-  // --- DAILY ---
   const handleDailyChange = (value) => {
-    if (value === "") {
-      setDaily("");
-      setWeekly("");
-      setMonthly("");
-      return;
-    }
+    if (value === "") { setDaily(""); setWeekly(""); setMonthly(""); return; }
     const val = Number(value);
     const dPacks = toPacks(val);
-    const wPacks = dPacks * 7;
-    const mPacks = dPacks * 30;
-
     setDaily(val);
-    setWeekly(fromPacks(Math.round(wPacks)));
-    setMonthly(fromPacks(Math.round(mPacks)));
+    setWeekly(fromPacks(Math.round(dPacks * 7)));
+    setMonthly(fromPacks(Math.round(dPacks * 30)));
   };
 
-  // --- WEEKLY ---
   const handleWeeklyChange = (value) => {
-    if (value === "") {
-      setDaily("");
-      setWeekly("");
-      setMonthly("");
-      return;
-    }
+    if (value === "") { setDaily(""); setWeekly(""); setMonthly(""); return; }
     const val = Number(value);
     const wPacks = toPacks(val);
     const dPacks = wPacks / 7;
-    const mPacks = dPacks * 30;
-
     setWeekly(val);
     setDaily(fromPacks(Math.round(dPacks)));
-    setMonthly(fromPacks(Math.round(mPacks)));
+    setMonthly(fromPacks(Math.round(dPacks * 30)));
   };
 
-  // --- MONTHLY ---
   const handleMonthlyChange = (value) => {
-    if (value === "") {
-      setDaily("");
-      setWeekly("");
-      setMonthly("");
-      return;
-    }
+    if (value === "") { setDaily(""); setWeekly(""); setMonthly(""); return; }
     const val = Number(value);
     const mPacks = toPacks(val);
     const dPacks = mPacks / 30;
-    const wPacks = dPacks * 7;
-
     setMonthly(val);
     setDaily(fromPacks(Math.round(dPacks)));
-    setWeekly(fromPacks(Math.round(wPacks)));
+    setWeekly(fromPacks(Math.round(dPacks * 7)));
   };
 
-  // --- YEAR RESULT ---
   const yearlyInPieces =
     monthly !== "" ? Math.round(toPacks(Number(monthly)) * 20 * 12) : 0;
 
-  // --- NICOTINE WEEKLY / MONTHLY HANDLERS ---
   const handleWeekly15Change = (value) => {
     setWeekly15(value);
     setMonthly15(value !== "" ? Math.round(Number(value) * 4) : "");
@@ -94,91 +70,57 @@ export default function CigaretteSalesCalculator() {
     setWeekly20(value !== "" ? Math.round(Number(value) / 4) : "");
   };
 
-  // --- YEARLY NICOTINE ---
   const yearlyNicotinePieces =
     (Number(weekly15 || 0) * 15 + Number(weekly20 || 0) * 20) * 4 * 12;
 
   return (
     <div className="container">
       <div className="header">
-        <h1>Об'єм продажу</h1>
-        <p className="description">Калькулятор річного об'єму продажу</p>
+        <h1>{t("sales.title")}</h1>
+        <p className="description">{t("sales.description")}</p>
       </div>
 
-      {/* --- UNIT SWITCHER --- */}
+      {/* Перемикач пачки/блоки */}
       <div className={styles.switcher}>
         <label className={styles.customRadio}>
-          <input
-            type="radio"
-            checked={unit === "packs"}
-            onChange={() => setUnit("packs")}
-          />
-          <span>Пачки</span>
+          <input type="radio" checked={unit === "packs"} onChange={() => setUnit("packs")} />
+          <span>{t("sales.packs")}</span>
         </label>
         <label className={styles.customRadio}>
-          <input
-            type="radio"
-            checked={unit === "blocks"}
-            onChange={() => setUnit("blocks")}
-          />
-          <span>Блоки</span>
+          <input type="radio" checked={unit === "blocks"} onChange={() => setUnit("blocks")} />
+          <span>{t("sales.blocks")}</span>
         </label>
       </div>
 
-      {/* --- DAILY --- */}
       <label className={styles.field}>
-        <span>Продажі на день ({unit === "packs" ? "пачок" : "блоків"})</span>
-        <input
-          type="number"
-          inputMode="numeric"
-          className={styles.input}
-          value={daily}
-          onChange={(e) => handleDailyChange(e.target.value)}
-        />
+        <span>{t("sales.dailySales", { unit: unitLabel })}</span>
+        <input type="number" inputMode="numeric" className={styles.input}
+          value={daily} onChange={(e) => handleDailyChange(e.target.value)} />
       </label>
 
-      {/* --- WEEKLY --- */}
       <label className={styles.field}>
-        <span>
-          Продажі на тиждень ({unit === "packs" ? "пачок" : "блоків"})
-        </span>
-        <input
-          type="number"
-          inputMode="numeric"
-          className={styles.input}
-          value={weekly}
-          onChange={(e) => handleWeeklyChange(e.target.value)}
-        />
+        <span>{t("sales.weeklySales", { unit: unitLabel })}</span>
+        <input type="number" inputMode="numeric" className={styles.input}
+          value={weekly} onChange={(e) => handleWeeklyChange(e.target.value)} />
       </label>
 
-      {/* --- MONTHLY --- */}
       <label className={styles.field}>
-        <span>Продажі на місяць ({unit === "packs" ? "пачок" : "блоків"})</span>
-        <input
-          type="number"
-          inputMode="numeric"
-          className={styles.input}
-          value={monthly}
-          onChange={(e) => handleMonthlyChange(e.target.value)}
-        />
+        <span>{t("sales.monthlySales", { unit: unitLabel })}</span>
+        <input type="number" inputMode="numeric" className={styles.input}
+          value={monthly} onChange={(e) => handleMonthlyChange(e.target.value)} />
       </label>
 
-      {/* --- YEAR RESULT --- */}
       <div className={styles.result}>
-        Продажі на рік (штук сигарет): {yearlyInPieces.toLocaleString("ru-RU")}
+        {t("sales.yearlyResult", { value: yearlyInPieces.toLocaleString(locale) })}
       </div>
 
-      {/* --- ALL CALCULATION --- */}
+      {/* Доля */}
       <div className={styles.all_switcher}>
-        <div className={styles.all_switcher_title}>Доля (%)</div>
+        <div className={styles.all_switcher_title}>{t("sales.sharePercent")}</div>
         <div className={styles.all_switcher_block}>
           {[21, 23, 27, 31, 33, 35, 37, 40, 43, 45].map((num) => (
             <label key={num} className={styles.all_switcher_radio}>
-              <input
-                type="radio"
-                checked={unitAll === num}
-                onChange={() => setUnitAll(num)}
-              />
+              <input type="radio" checked={unitAll === num} onChange={() => setUnitAll(num)} />
               <span>{num}</span>
             </label>
           ))}
@@ -186,58 +128,41 @@ export default function CigaretteSalesCalculator() {
       </div>
 
       <div className={styles.result}>
-        Продажі на рік ALL (штук сигарет):{" "}
-        {Math.round((yearlyInPieces * 100) / unitAll).toLocaleString("ru-RU")}
+        {t("sales.yearlyAll", {
+          value: Math.round((yearlyInPieces * 100) / unitAll).toLocaleString(locale),
+        })}
       </div>
 
-      {/* --- NICOTINE CANS --- */}
+      {/* Нікотинові паунчі */}
       <div className={styles.nicotine_section}>
-        <h2 className={styles.nicotine_title}>Нікотинові паунчі</h2>
+        <h2 className={styles.nicotine_title}>{t("sales.nicotineTitle")}</h2>
 
         <label className={styles.field}>
-          <span>Продажи в неделю (банок по 15 штук)</span>
-          <input
-            type="number"
-            inputMode="numeric"
-            className={styles.input}
-            value={weekly15}
-            onChange={(e) => handleWeekly15Change(e.target.value)}
-          />
+          <span>{t("sales.weekly15")}</span>
+          <input type="number" inputMode="numeric" className={styles.input}
+            value={weekly15} onChange={(e) => handleWeekly15Change(e.target.value)} />
         </label>
 
         <label className={styles.field}>
-          <span>Продажи в неделю (банок по 20 штук)</span>
-          <input
-            type="number"
-            inputMode="numeric"
-            className={styles.input}
-            value={weekly20}
-            onChange={(e) => handleWeekly20Change(e.target.value)}
-          />
+          <span>{t("sales.weekly20")}</span>
+          <input type="number" inputMode="numeric" className={styles.input}
+            value={weekly20} onChange={(e) => handleWeekly20Change(e.target.value)} />
         </label>
         <hr />
         <label className={styles.field}>
-          <span>Продажи в месяц (банок по 15 штук)</span>
-          <input
-            type="number"
-            className={styles.input}
-            value={monthly15}
-            onChange={(e) => handleMonthly15Change(e.target.value)}
-          />
+          <span>{t("sales.monthly15")}</span>
+          <input type="number" className={styles.input}
+            value={monthly15} onChange={(e) => handleMonthly15Change(e.target.value)} />
         </label>
 
         <label className={styles.field}>
-          <span>Продажи в месяц (банок по 20 штук)</span>
-          <input
-            type="number"
-            className={styles.input}
-            value={monthly20}
-            onChange={(e) => handleMonthly20Change(e.target.value)}
-          />
+          <span>{t("sales.monthly20")}</span>
+          <input type="number" className={styles.input}
+            value={monthly20} onChange={(e) => handleMonthly20Change(e.target.value)} />
         </label>
 
         <div className={styles.result}>
-          Продажи в год: {yearlyNicotinePieces.toLocaleString("ru-RU")} штук
+          {t("sales.yearlyNicotine", { value: yearlyNicotinePieces.toLocaleString(locale) })}
         </div>
       </div>
     </div>

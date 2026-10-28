@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Barcode from "../Barcode/Barcode";
-import "./Accordion.css"
+import "./Accordion.css";
 
 function Accordion({
   data,
@@ -9,10 +10,11 @@ function Accordion({
   openModal,
   hideBarcodes,
 }) {
+  const { t } = useTranslation();
   const [openBrands, setOpenBrands] = useState({});
 
   if (!data || Object.keys(data).length === 0) {
-    return <p className="loading">Загрузка данных...</p>;
+    return <p className="loading">{t("common.loading")}</p>;
   }
 
   const toggleBrand = (brand) => {
@@ -22,7 +24,6 @@ function Accordion({
     }));
   };
 
-  // 🔹 Функция для подсчёта выбранных моделей в каждой секции
   const getSelectedCount = (brand, models) => {
     return Object.keys(models).reduce((count, model) => {
       const key = `${brand}-${model}`;
@@ -40,15 +41,12 @@ function Accordion({
         return (
           <div key={brand} className="accordion-item">
             <div
-              className={`accordion-header ${
-                selectedCount > 0 ? "active" : ""
-              }`}
+              className={`accordion-header ${selectedCount > 0 ? "active" : ""}`}
               onClick={() => toggleBrand(brand)}
             >
               <span className="brand-name">{brand}</span>
 
               <div className="header-right">
-                {/* 🔹 Счётчик выделенных элементов */}
                 <span className="brand-counter">
                   {selectedCount > 0 && (
                     <span>

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./recommendedOrderCalculator.module.css";
 import RecommendedOrderExplanation from "../Components/RecommendedOrderExplanation/RecommendedOrderExplanation";
 
 function RecommendedOrderCalculator() {
+  const { t } = useTranslation();
   const [weeklySales, setWeeklySales] = useState(["", "", "", ""]);
   const [stock, setStock] = useState("");
-  const [coverageDays, setCoverageDays] = useState(7); // по умолчанию 7 дней
+  const [coverageDays, setCoverageDays] = useState(7);
   const [recommendedOrder, setRecommendedOrder] = useState(null);
 
   const handleSalesChange = (index, value) => {
@@ -23,9 +25,8 @@ function RecommendedOrderCalculator() {
 
     let targetStock = averageDailySales * Number(coverageDays);
 
-    // Если точка OOS, применяем страховой коэффициент
     if (Number(stock) === 0) {
-      targetStock = targetStock * 1.5; // страховой коэффициент 1.5
+      targetStock = targetStock * 1.5;
     }
 
     const order = Math.max(targetStock - Number(stock), 0);
@@ -35,13 +36,13 @@ function RecommendedOrderCalculator() {
   return (
     <div className="container">
       <div className="header">
-        <h1>Рекомендований заказ</h1>
-        <p className="description">Розрахунок рекомендованного заказу</p>
+        <h1>{t("order.title")}</h1>
+        <p className="description">{t("order.description")}</p>
       </div>
 
-      {/* Остаток */}
+      {/* Залишок */}
       <div className={styles.stockContainer}>
-        <label className={styles.label}>Поточний залишок:</label>
+        <label className={styles.label}>{t("order.currentStock")}</label>
         <input
           className={styles.inputField}
           type="number"
@@ -50,12 +51,12 @@ function RecommendedOrderCalculator() {
         />
       </div>
 
-      {/* Продажи по неделям */}
+      {/* Продажі по тижнях */}
       <div className={styles.salesContainer}>
-        <h4>Недільні продажі:</h4>
+        <h4>{t("order.weeklySales")}</h4>
         {weeklySales.map((val, i) => (
           <div key={i} className={styles.weekContainer}>
-            <label className={styles.label}>Неділя {i + 1}:</label>
+            <label className={styles.label}>{t("order.week", { num: i + 1 })}</label>
             <input
               className={styles.inputField}
               type="number"
@@ -68,7 +69,7 @@ function RecommendedOrderCalculator() {
 
       {/* Запас в днях */}
       <div className={styles.weekContainer}>
-        <label className={styles.label}>Запас на (днів):</label>
+        <label className={styles.label}>{t("order.coverageDays")}</label>
         <select
           className={styles.selectField}
           value={coverageDays}
@@ -76,23 +77,23 @@ function RecommendedOrderCalculator() {
         >
           {Array.from({ length: 12 }, (_, i) => i + 3).map((day) => (
             <option key={day} value={day}>
-              {day} {day === 1 ? "день" : "днів"}
+              {day} {day === 1 ? t("order.day") : t("order.days")}
             </option>
           ))}
         </select>
       </div>
 
       <button className={styles.button} onClick={calculateOrder}>
-        Розрахувати
+        {t("order.calculate")}
       </button>
 
       {recommendedOrder !== null && (
         <div className={styles.result}>
-          Рекомендований заказ: {recommendedOrder} шт.
+          {t("order.result", { value: recommendedOrder })}
         </div>
       )}
 
-     <RecommendedOrderExplanation/>
+      <RecommendedOrderExplanation />
     </div>
   );
 }

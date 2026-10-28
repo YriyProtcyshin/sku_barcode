@@ -9,9 +9,9 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
       manifest: {
-        name: "SKU BARCODE LIST",
-        short_name: "SKU BARCODE LIST",
-        description: "sku barcode list SKU generator",
+        name: "SKU Barcode List",
+        short_name: "SKU List",
+        description: "Генератор штрих-кодів та списку SKU для роздрібної торгівлі",
         theme_color: "#ffffff",
         background_color: "#ffffff",
         display: "standalone",
